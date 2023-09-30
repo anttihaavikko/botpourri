@@ -29,7 +29,8 @@ public class Bug : MonoBehaviour
     [SerializeField] private Transform visionRange;
     [SerializeField] private GameObject shield;
     [SerializeField] private ScoreDisplay score;
-
+    [SerializeField] private LayerMask withoutHints, withHints;
+    
     public int FreeSpace => freeSpace;
 
     private readonly List<PathLine> paths = new ();
@@ -278,6 +279,9 @@ public class Bug : MonoBehaviour
         damage = 1 + SumOf(BonusId.Damage);
         shieldMax = SumOf(BonusId.Shield);
         chaining = SumOf(BonusId.Chain);
+
+        cam.cullingMask = SumOf(BonusId.Sensor) > 0 ? withHints : withoutHints;
+        
         UpdateSteps();
         
         CancelInvoke(nameof(RegenerateShield));

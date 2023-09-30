@@ -960,7 +960,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 2039
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -3007,6 +3007,14 @@ PrefabInstance:
     - target: {fileID: 48214443778286303, guid: a3cc367600ad649418e8ffd8c9e277cf, type: 3}
       propertyPath: nodeMask.m_Bits
       value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 48214443778286303, guid: a3cc367600ad649418e8ffd8c9e277cf, type: 3}
+      propertyPath: withHints.m_Bits
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 48214443778286303, guid: a3cc367600ad649418e8ffd8c9e277cf, type: 3}
+      propertyPath: withoutHints.m_Bits
+      value: 2039
       objectReference: {fileID: 0}
     - target: {fileID: 48214443778286303, guid: a3cc367600ad649418e8ffd8c9e277cf, type: 3}
       propertyPath: health.onDeath.m_PersistentCalls.m_Calls.Array.size

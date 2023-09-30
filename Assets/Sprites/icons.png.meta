@@ -313,7 +313,7 @@ TextureImporter:
         width: 473
         height: 377
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -321,6 +321,48 @@ TextureImporter:
       bones: []
       spriteID: 5d9a771a7a8e545ff8d860880d3dbbf7
       internalID: -1177344659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sensors
+      rect:
+        serializedVersion: 2
+        x: 2190
+        y: 620
+        width: 449
+        height: 297
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7becbad886467419b82131d7c517efa3
+      internalID: -1521968768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wings
+      rect:
+        serializedVersion: 2
+        x: 2140
+        y: 1102
+        width: 414
+        height: 182
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba75b93aa764e4aa6a42780520028197
+      internalID: 2046684553
       vertices: []
       indices: 
       edges: []
@@ -336,6 +378,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      sensors: -1521968768
       vision: -2029877426
       charge: -988492836
       damage: -1715315113
@@ -355,6 +398,7 @@ TextureImporter:
       icons_15: 1044983741
       icons_2: 43046027
       rate: -1445591932
+      wings: 2046684553
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
