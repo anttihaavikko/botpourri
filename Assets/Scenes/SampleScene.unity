@@ -1983,6 +1983,7 @@ MonoBehaviour:
   tooltip: {fileID: 457543052}
   stepDisplay: {fileID: 1482435691}
   visionArea: {fileID: 683419138}
+  circlePrefab: {fileID: 7231981968139086707, guid: 4e7c0d98d98f747d9ad7142a03c71330, type: 3}
 --- !u!210 &683419135
 SortingGroup:
   m_ObjectHideFlags: 0

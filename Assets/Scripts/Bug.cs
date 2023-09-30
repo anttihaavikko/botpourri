@@ -18,7 +18,8 @@ public class Bug : MonoBehaviour
     [SerializeField] private Tooltip tooltip;
     [SerializeField] private TMP_Text stepDisplay;
     [SerializeField] private CircleCollider2D visionArea;
-    
+    [SerializeField] private GameObject circlePrefab;
+
     public int FreeSpace => freeSpace;
 
     private readonly List<PathLine> paths = new ();
@@ -34,6 +35,7 @@ public class Bug : MonoBehaviour
 
     private void Start()
     {
+        Instantiate(circlePrefab, Vector3.zero, Quaternion.identity);
         StartPath(currentNode.transform.position);
         currentNode.ToggleHitBox(false);
         currentNode.Activate(this);
@@ -98,6 +100,7 @@ public class Bug : MonoBehaviour
 
     private void AddNode(Vector3 pos)
     {
+        Instantiate(circlePrefab, pos, Quaternion.identity);
         paths.Last().AddPoint(pos);
     }
 
