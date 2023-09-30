@@ -14,8 +14,8 @@ TagManager:
   - Player
   - Nodes
   - Folder
-  - 
-  - 
+  - Clusters
+  - Enemy
   - 
   - 
   - 
@@ -43,4 +43,7 @@ TagManager:
     locked: 0
   - name: Objects
     uniqueID: 2069426753
+    locked: 0
+  - name: Front
+    uniqueID: 3003632753
     locked: 0

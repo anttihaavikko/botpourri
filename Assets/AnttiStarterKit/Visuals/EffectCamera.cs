@@ -11,6 +11,7 @@ namespace AnttiStarterKit.Visuals
         public Transform cameraRig;
         public Volume ppVolume;
         public Material colorSplitMaterial;
+        [SerializeField] private CinemachineVirtualCamera virtualCam;
 
         public float returnSpeed = 0.6f;
         public float shakeChance = 0.3f;
@@ -31,6 +32,7 @@ namespace AnttiStarterKit.Visuals
         private LensDistortion ld;
         private ColorAdjustments cg;
         private static readonly int Amount = Shader.PropertyToID("_Amount");
+        private CinemachineTransposer camTransposer;
         
         private static EffectCamera instance = null;
         public static EffectCamera Instance {
@@ -39,6 +41,7 @@ namespace AnttiStarterKit.Visuals
 
         private void Awake()
         {
+            camTransposer = virtualCam.GetCinemachineComponent<CinemachineTransposer>();
             if (instance != null && instance != this) {
                 Destroy (this.gameObject);
                 return;
@@ -105,15 +108,17 @@ namespace AnttiStarterKit.Visuals
 
                 var rot = Quaternion.Euler(0, 0, Random.Range(-shakeAmount, shakeAmount) * mod * 1.5f);
 
-                cameraRig.position = originalPos + diff * 0.075f;
+                // cameraRig.position = originalPos + diff * 0.075f;
+                camTransposer.m_FollowOffset = originalPos + diff * 0.075f;
                 cameraRig.rotation = rot;
             }
             else
             {
                 var p = Vector3.MoveTowards(cameraRig.transform.position, originalPos, Time.deltaTime * returnSpeed);
                 var r = Quaternion.RotateTowards(cameraRig.transform.rotation, Quaternion.identity, Time.deltaTime);
-                cameraRig.position = p;
+                // cameraRig.position = p;
                 cameraRig.rotation = r;
+                camTransposer.m_FollowOffset = p;
             }
         }
 

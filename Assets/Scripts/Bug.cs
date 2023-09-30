@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using AnttiStarterKit.Animations;
 using AnttiStarterKit.Extensions;
+using AnttiStarterKit.Game;
+using AnttiStarterKit.Managers;
+using AnttiStarterKit.Visuals;
 using Mono.Cecil;
 using TMPro;
 using UnityEngine;
@@ -19,6 +22,9 @@ public class Bug : MonoBehaviour
     [SerializeField] private TMP_Text stepDisplay;
     [SerializeField] private CircleCollider2D visionArea;
     [SerializeField] private GameObject circlePrefab;
+    [SerializeField] private bool isPlayer;
+    [SerializeField] private LineDrawer lineDrawer;
+    [SerializeField] private Health health;
 
     public int FreeSpace => freeSpace;
 
@@ -28,6 +34,9 @@ public class Bug : MonoBehaviour
     private int freeSpace;
     private Folder folder;
     private readonly List<Bonus> bonuses = new();
+    private readonly Enemies enemies = new();
+    private float shotDelay;
+    private EffectCamera effectCam;
 
     private int steps;
 
@@ -35,6 +44,10 @@ public class Bug : MonoBehaviour
 
     private void Start()
     {
+        effectCam = Camera.main.GetComponent<EffectCamera>();
+        
+        if (!isPlayer) return;
+
         Instantiate(circlePrefab, Vector3.zero, Quaternion.identity);
         StartPath(currentNode.transform.position);
         currentNode.ToggleHitBox(false);
@@ -44,10 +57,18 @@ public class Bug : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
+        if (!isPlayer) return;
+        
         var node = col.GetComponent<Node>();
         if (node)
         {
             node.Show();
+        }
+        
+        var cluster = col.GetComponent<Cluster>();
+        if (cluster)
+        {
+            cluster.Activate(this, enemies);
         }
     }
 
@@ -61,7 +82,19 @@ public class Bug : MonoBehaviour
 
     private void Update()
     {
+        if (!isPlayer) return;
+        
         UpdatePreviewLine();
+
+        shotDelay = Mathf.MoveTowards(shotDelay, 0, Time.deltaTime);
+
+        var target = enemies.Find(transform.position, 5f);
+        if (target && shotDelay <= 0)
+        {
+            lineDrawer.AddThunderLine(transform.position + Vector3.up, target.transform.position + Vector3.up * 0.3f, new Color(5, 5, 0), 0.6f, 0.5f);
+            target.Damage(1);
+            shotDelay = 0.5f;
+        }
 
         if (Input.GetMouseButtonDown(0) && folder)
         {
@@ -201,7 +234,17 @@ public class Bug : MonoBehaviour
     private void CalculateStats()
     {
         steps = 3 + bonuses.Count(b => b.id == BonusId.Steps);
-        visionArea.radius = 3 + bonuses.Count(b => b.id == BonusId.Vision);
+        visionArea.radius = 3 + bonuses.Count(b => b.id == BonusId.Vision) * 0.5f;
         UpdateSteps();
+    }
+    
+    public void Damage(int amount)
+    {
+        health?.TakeDamage<Bug>(amount);
+    }
+
+    public void Shake(float amount)
+    {
+        effectCam.BaseEffect(amount);
     }
 }
