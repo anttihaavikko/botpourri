@@ -30,8 +30,10 @@ public class Bug : MonoBehaviour
     [SerializeField] private GameObject shield;
     [SerializeField] private ScoreDisplay score;
     [SerializeField] private LayerMask withoutHints, withHints;
-    
+    [SerializeField] private GameObject installHelp;
+
     public int FreeSpace => freeSpace;
+    public bool HasNoBonuses => bonuses.Count == 0;
 
     private readonly List<PathLine> paths = new ();
     private bool moving;
@@ -62,7 +64,7 @@ public class Bug : MonoBehaviour
         Instantiate(circlePrefab, Vector3.zero, Quaternion.identity);
         StartPath(currentNode.transform.position);
         currentNode.ToggleHitBox(false);
-        currentNode.Activate(this);
+        currentNode.Activate(this, installHelp);
         currentNode.Setup(0);
         CalculateStats();
     }
@@ -147,8 +149,11 @@ public class Bug : MonoBehaviour
                 currentNode.Clear();
                 currentNode.ToggleHitBox(true);
                 currentNode = hit.collider.GetComponent<Node>();
-                currentNode.Activate(this);
-                this.StartCoroutine(() => currentNode.ToggleHitBox(false), delay);
+                this.StartCoroutine(() =>
+                {
+                    currentNode.ToggleHitBox(false);
+                    currentNode.Activate(this, installHelp);
+                }, delay);
                 StartPath(pos);
             }
         }

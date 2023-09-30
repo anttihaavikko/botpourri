@@ -13,6 +13,8 @@ public class Folder : MonoBehaviour
     private bool activated;
     private Bonus bonus;
 
+    public int Size => bonus?.size ?? 0;
+
     public void Setup(int level)
     {
         bonus = Bonus.Get(level);

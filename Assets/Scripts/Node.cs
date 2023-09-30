@@ -10,15 +10,24 @@ public class Node : MonoBehaviour
     [SerializeField] private GameObject folders;
     [SerializeField] private Folder left, right;
     
-
     private bool booted;
     private int space;
 
-    public void Activate(Bug bug)
+    public void Activate(Bug bug, GameObject installHelp)
     {
         if (!booted)
         {
             bug.AddSpace(space);
+
+            var p = transform.position;
+            var notOverlapping = Mathf.Abs(p.x) >= 20 || Mathf.Abs(p.y) >= 6;
+
+            if (notOverlapping && bug.HasNoBonuses && (bug.FreeSpace > left.Size || bug.FreeSpace > left.Size))
+            {
+                installHelp.SetActive(true);
+                installHelp.transform.position = transform.position;
+                installHelp.SetActive(true);
+            }
         }
         
         booted = true;

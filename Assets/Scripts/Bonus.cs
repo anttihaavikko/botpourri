@@ -42,7 +42,7 @@ public class Bonus
             new(BonusId.Speed, "Wings", "Dramatically increase your movement speed.", 8, 11, 2, 2)
         };
         
-        return new Bonus(blueprints.Where(b => b.level <= level || true).ToList().Random());
+        return new Bonus(blueprints.Where(b => b.level <= level).ToList().Random());
     }
 }
 

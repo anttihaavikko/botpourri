@@ -819,7 +819,7 @@ Transform:
   m_GameObject: {fileID: 48214442518112592}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.15, y: 0.3328125, z: 1}
+  m_LocalScale: {x: 1.7090149, y: 0.49459264, z: 1.4861}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 48214443778286301}
@@ -2371,6 +2371,12 @@ MonoBehaviour:
   visionRange: {fileID: 0}
   shield: {fileID: 4840296071208444604}
   score: {fileID: 0}
+  withoutHints:
+    serializedVersion: 2
+    m_Bits: 0
+  withHints:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!120 &48214443778286300
 LineRenderer:
   m_ObjectHideFlags: 0
