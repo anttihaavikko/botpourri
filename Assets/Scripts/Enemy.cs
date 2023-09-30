@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     private Bug target;
     private Enemies container;
     private static readonly int Moving = Animator.StringToHash("moving");
+    private float biteDelay;
 
     public void SetTarget(Bug player)
     {
@@ -20,12 +21,21 @@ public class Enemy : MonoBehaviour
         anim.SetBool(Moving, false);
         
         if (!target) return;
+        
+        biteDelay = Mathf.MoveTowards(biteDelay, 0, Time.deltaTime);
 
         var diff = target.transform.position - transform.position;
         if (diff.magnitude > 0.7f)
         {
             anim.SetBool(Moving, true);
             transform.position = Vector3.MoveTowards(transform.position, target.transform.position, Time.deltaTime * 3f);
+            return;
+        }
+
+        if (target && biteDelay <= 0)
+        {
+            target.Damage(1);
+            biteDelay = 0.75f;
         }
     }
 

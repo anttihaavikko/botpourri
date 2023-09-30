@@ -71,6 +71,18 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.5894184
       objectReference: {fileID: 0}
+    - target: {fileID: 48214442893711669, guid: a3cc367600ad649418e8ffd8c9e277cf, type: 3}
+      propertyPath: m_Color.b
+      value: 0.20358667
+      objectReference: {fileID: 0}
+    - target: {fileID: 48214442893711669, guid: a3cc367600ad649418e8ffd8c9e277cf, type: 3}
+      propertyPath: m_Color.g
+      value: 0.20358667
+      objectReference: {fileID: 0}
+    - target: {fileID: 48214442893711669, guid: a3cc367600ad649418e8ffd8c9e277cf, type: 3}
+      propertyPath: m_Color.r
+      value: 0.7075472
+      objectReference: {fileID: 0}
     - target: {fileID: 48214443073697404, guid: a3cc367600ad649418e8ffd8c9e277cf, type: 3}
       propertyPath: m_Solver.targetPosition.x
       value: 6.6105595
