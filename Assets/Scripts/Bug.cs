@@ -9,6 +9,7 @@ using AnttiStarterKit.Visuals;
 using Mono.Cecil;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Bug : MonoBehaviour
 {
@@ -320,7 +321,7 @@ public class Bug : MonoBehaviour
     public void Leech()
     {
         var chance = Mathf.Pow(0.75f, SumOf(BonusId.Leech));
-        if (chance > 0)
+        if (Random.value > chance)
         {
             health.Heal(1);
         }
