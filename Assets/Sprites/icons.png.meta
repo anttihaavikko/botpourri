@@ -334,7 +334,7 @@ TextureImporter:
         width: 449
         height: 297
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -355,7 +355,7 @@ TextureImporter:
         width: 414
         height: 182
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -363,6 +363,27 @@ TextureImporter:
       bones: []
       spriteID: ba75b93aa764e4aa6a42780520028197
       internalID: 2046684553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: repel
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 892
+        width: 294
+        height: 198
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48feb91c44ccd4256ae65f021d500ae2
+      internalID: 2084093007
       vertices: []
       indices: 
       edges: []
@@ -379,6 +400,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       sensors: -1521968768
+      repel: 2084093007
       vision: -2029877426
       charge: -988492836
       damage: -1715315113

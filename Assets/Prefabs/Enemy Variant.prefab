@@ -392,6 +392,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 48214443778285858, guid: a3cc367600ad649418e8ffd8c9e277cf, type: 3}
+      propertyPath: m_LinearDrag
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 48214443778285858, guid: a3cc367600ad649418e8ffd8c9e277cf, type: 3}
       propertyPath: m_GravityScale
       value: 0
       objectReference: {fileID: 0}
@@ -715,6 +719,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 8980181578088339102}
   bug: {fileID: 8980181578088338784}
+  body: {fileID: 8980181578088339101}
+--- !u!50 &8980181578088339101 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 48214443778285858, guid: a3cc367600ad649418e8ffd8c9e277cf, type: 3}
+  m_PrefabInstance: {fileID: 8938318523693070271}
+  m_PrefabAsset: {fileID: 0}
 --- !u!95 &8980181578088339102 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 48214443778285857, guid: a3cc367600ad649418e8ffd8c9e277cf, type: 3}

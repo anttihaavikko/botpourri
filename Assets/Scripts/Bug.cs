@@ -82,7 +82,7 @@ public class Bug : MonoBehaviour
         var cluster = col.GetComponent<Cluster>();
         if (cluster)
         {
-            cluster.Activate(this, enemies);
+            cluster.Activate(this, enemies, SumOf(BonusId.Repel));
         }
     }
 

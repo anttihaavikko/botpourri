@@ -8,7 +8,7 @@ public class Cluster : MonoBehaviour
     private bool triggered;
     private int level;
 
-    public void Activate(Bug player, Enemies enemies)
+    public void Activate(Bug player, Enemies enemies, int pushAmount)
     {
         if (Vector3.Distance(transform.position, Vector3.zero) < 3.5f) return; 
         
@@ -20,6 +20,7 @@ public class Cluster : MonoBehaviour
             var enemy = Instantiate(prefab, transform.position.RandomOffset(1f), Quaternion.identity);
             enemy.Setup(enemies, level);
             enemy.SetTarget(player);
+            enemy.Push(player.transform.position, pushAmount);
         }
     }
 

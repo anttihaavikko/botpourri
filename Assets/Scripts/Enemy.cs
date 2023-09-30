@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private Animator anim;
     [SerializeField] private Bug bug;
+    [SerializeField] private Rigidbody2D body;
 
     private Bug target;
     private Enemies container;
@@ -76,5 +77,11 @@ public class Enemy : MonoBehaviour
     public void Damage(int amount)
     {
         bug.Damage(amount);
+    }
+
+    public void Push(Vector3 from, int amount)
+    {
+        var dir = transform.position - from;
+        body.AddForce(dir.normalized * 15f * amount, ForceMode2D.Impulse);
     }
 }
