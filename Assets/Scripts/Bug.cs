@@ -28,6 +28,7 @@ public class Bug : MonoBehaviour
     [SerializeField] private Health health;
     [SerializeField] private Transform visionRange;
     [SerializeField] private GameObject shield;
+    [SerializeField] private ScoreDisplay score;
 
     public int FreeSpace => freeSpace;
 
@@ -299,6 +300,11 @@ public class Bug : MonoBehaviour
             CancelInvoke(nameof(RegenerateShield));
             Invoke(nameof(RegenerateShield), 3f);
         }
+
+        if (amount > 0 && score)
+        {
+            score.ResetMulti();
+        }
         
         health?.TakeDamage<Bug>(amount);
     }
@@ -329,8 +335,11 @@ public class Bug : MonoBehaviour
 
     public void AddScore(int level, Vector3 pos)
     {
+        if (!score) return;
         var lvlMulti = Mathf.Max(1, level + 1);
-        var amount = lvlMulti * lvlMulti * 10 * Mathf.Max(1, freeSpace);
+        var amount = lvlMulti * lvlMulti * 10 * Mathf.Max(1, freeSpace) * Mathf.Min(score.Multi, 64);
         EffectManager.AddTextPopup(amount.ToString(), pos + Vector3.up);
+        score.Add(amount, false);
+        score.AddMulti();
     }
 }
