@@ -9,11 +9,13 @@ public class Bug : MonoBehaviour
 {
     [SerializeField] private Camera cam;
     [SerializeField] private LineRenderer line;
-    [SerializeField] private Path pathPrefab;
+    [SerializeField] private PathLine pathPrefab;
+    [SerializeField] private Animator anim;
 
-    private readonly List<Path> paths = new ();
+    private readonly List<PathLine> paths = new ();
     private bool moving;
     private bool blocked;
+    private static readonly int Moving = Animator.StringToHash("moving");
 
     private void Start()
     {
@@ -45,11 +47,13 @@ public class Bug : MonoBehaviour
 
     private void MoveTo(Vector3 pos, bool manual = false)
     {
+        anim.SetBool(Moving, true);
         moving = true;
-        Tweener.MoveToBounceOut(transform, pos, 0.6f);
+        Tweener.MoveTo(transform, pos, 0.6f, TweenEasings.QuadraticEaseInOut);
         this.StartCoroutine(() =>
         {
             moving = false;
+            anim.SetBool(Moving, false);
 
             if (manual)
             {
@@ -94,7 +98,7 @@ public class Bug : MonoBehaviour
         line.SetPosition(2, mousePos);
 
         blocked = paths.Any(path => path.Intersects(p, mousePos));
-        line.startColor = line.endColor = blocked ? new Color(1, 1, 1, 0.5f) : Color.white;
+        line.startColor = line.endColor = blocked ? new Color(1, 1, 1, 0.25f) : Color.white;
     }
     
 }

@@ -1,7 +1,7 @@
 using UnityEditor.Tilemaps;
 using UnityEngine;
 
-public class Path : MonoBehaviour
+public class PathLine : MonoBehaviour
 {
     [SerializeField] private LineRenderer line;
 
