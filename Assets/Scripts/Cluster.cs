@@ -10,12 +10,12 @@ public class Cluster : MonoBehaviour
 
     public void Activate(Bug player, Enemies enemies)
     {
-        if (Vector3.Distance(transform.position, Vector3.zero) < 2.5f) return; 
+        if (Vector3.Distance(transform.position, Vector3.zero) < 3.5f) return; 
         
         if (triggered) return;
         triggered = true;
 
-        for (var i = 0; i < level + 2; i++)
+        for (var i = 0; i < level * 0.5f + 1; i++)
         {
             var enemy = Instantiate(prefab, transform.position.RandomOffset(1f), Quaternion.identity);
             enemy.Setup(enemies, level);

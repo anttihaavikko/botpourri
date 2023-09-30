@@ -39,6 +39,7 @@ public class Bug : MonoBehaviour
     private EffectCamera effectCam;
     private float attackDelay;
     private float attackRange;
+    private float speed;
 
     private int steps;
 
@@ -54,6 +55,7 @@ public class Bug : MonoBehaviour
         StartPath(currentNode.transform.position);
         currentNode.ToggleHitBox(false);
         currentNode.Activate(this);
+        currentNode.Setup(0);
         CalculateStats();
     }
 
@@ -104,7 +106,7 @@ public class Bug : MonoBehaviour
             return;
         }
 
-        if (Input.GetMouseButtonDown(0) && !moving && !blocked)
+        if (Input.GetMouseButtonDown(0) && !moving && !blocked && paths.Last().Count <= steps)
         {
             var pos = cam.ScreenToWorldPoint(Input.mousePosition).WhereZ(0);
 
@@ -118,7 +120,7 @@ public class Bug : MonoBehaviour
             }
             
             AddNode(pos);
-            MoveTo(pos, true);
+            var delay = MoveTo(pos, true);
             UpdateSteps();
 
             if (hit)
@@ -127,7 +129,7 @@ public class Bug : MonoBehaviour
                 currentNode.ToggleHitBox(true);
                 currentNode = hit.collider.GetComponent<Node>();
                 currentNode.Activate(this);
-                this.StartCoroutine(() => currentNode.ToggleHitBox(false), 0.6f);
+                this.StartCoroutine(() => currentNode.ToggleHitBox(false), delay);
                 StartPath(pos);
             }
         }
@@ -139,11 +141,15 @@ public class Bug : MonoBehaviour
         paths.Last().AddPoint(pos);
     }
 
-    private void MoveTo(Vector3 pos, bool manual = false)
+    private float MoveTo(Vector3 pos, bool manual = false)
     {
+        CancelInvoke(nameof(CheckReturn));
+        
         anim.SetBool(Moving, true);
+        anim.speed = 1 / speed * 0.2f;
         moving = true;
-        Tweener.MoveTo(transform, pos, 0.6f, TweenEasings.QuadraticEaseInOut);
+        var duration = Vector3.Distance(transform.position, pos) * speed;
+        Tweener.MoveTo(transform, pos, duration, TweenEasings.QuadraticEaseInOut);
         this.StartCoroutine(() =>
         {
             moving = false;
@@ -151,27 +157,29 @@ public class Bug : MonoBehaviour
 
             if (manual)
             {
-                CheckReturn();
+                Invoke(nameof(CheckReturn), 3f * speed);
             }
             
-        }, 0.6f);
+        }, duration);
+
+        return duration;
     }
 
     private void CheckReturn()
     {
         if (paths.Last().Count <= steps) return;
         ReturnTo(steps - 1);
-        this.StartCoroutine(() => StartPath(paths.Last().GetPoint(0)), 0.6f * (paths.Last().Count - 1));
+        this.StartCoroutine(() => StartPath(paths.Last().GetPoint(0)), speed * paths.Last().GetTotalLength());
     }
 
     private void ReturnTo(int index)
     {
         var pos = paths.Last().GetPoint(index);
-        MoveTo(pos);
+        var duration = MoveTo(pos);
 
         if (index > 0)
         {
-            this.StartCoroutine(() => ReturnTo(index - 1), 0.6f);
+            this.StartCoroutine(() => ReturnTo(index - 1), duration);
         }
     }
 
@@ -186,7 +194,7 @@ public class Bug : MonoBehaviour
             folder.Mark(true, tooltip);
         }
         
-        if (moving || hit)
+        if (moving || hit || paths.Last().Count > steps)
         {
             line.enabled = false;
             return;
@@ -239,6 +247,7 @@ public class Bug : MonoBehaviour
         visionArea.radius = 3 + bonuses.Where(b => b.id == BonusId.Vision).Sum(b => b.value) * 0.5f;
         attackDelay = 0.5f * Mathf.Pow(0.9f, bonuses.Count(b => b.id == BonusId.ShotRate));
         attackRange = 5 + bonuses.Count(b => b.id == BonusId.Vision);
+        speed = Mathf.Pow(0.85f, bonuses.Count(b => b.id == BonusId.Speed)) * 0.25f;
         UpdateSteps();
     }
     

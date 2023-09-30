@@ -13,9 +13,9 @@ public class Folder : MonoBehaviour
     private bool activated;
     private Bonus bonus;
 
-    private void Start()
+    public void Setup(int level)
     {
-        bonus = Bonus.Get();
+        bonus = Bonus.Get(level);
         icon = icons[bonus.icon];
         icon.gameObject.SetActive(true);
     }

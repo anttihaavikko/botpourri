@@ -61,4 +61,14 @@ public class PathLine : MonoBehaviour
         
         return true;
     }
+
+    public float GetTotalLength()
+    {
+        var sum = 0f;
+        for (var i = 0; i < line.positionCount - 1; i++)
+        {
+            sum += Vector3.Distance(line.GetPosition(i), line.GetPosition(i + 1));
+        }
+        return sum;
+    }
 }

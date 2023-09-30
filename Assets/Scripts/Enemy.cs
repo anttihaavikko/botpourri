@@ -29,7 +29,7 @@ public class Enemy : MonoBehaviour
         if (diff.magnitude > 0.7f)
         {
             anim.SetBool(Moving, true);
-            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, Time.deltaTime * 3f);
+            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, Time.deltaTime * 1.5f);
             return;
         }
 

@@ -8,6 +8,8 @@ public class Node : MonoBehaviour
     [SerializeField] private Collider2D hitBox;
     [SerializeField] private TMP_Text screen;
     [SerializeField] private GameObject folders;
+    [SerializeField] private Folder left, right;
+    
 
     private bool booted;
     private int space;
@@ -55,5 +57,7 @@ public class Node : MonoBehaviour
     public void Setup(int level)
     {
         space = (1 + level) * Random.Range(4, 16);
+        left.Setup(level);
+        right.Setup(level);
     }
 }
