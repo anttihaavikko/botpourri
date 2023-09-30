@@ -297,7 +297,7 @@ public class Bug : MonoBehaviour
             shieldLeft--;
             shield.SetActive(shieldLeft > 0);
             CancelInvoke(nameof(RegenerateShield));
-            Invoke(nameof(RegenerateShield), 1.5f);
+            Invoke(nameof(RegenerateShield), 3f);
         }
         
         health?.TakeDamage<Bug>(amount);
@@ -325,5 +325,12 @@ public class Bug : MonoBehaviour
         {
             health.Heal(1);
         }
+    }
+
+    public void AddScore(int level, Vector3 pos)
+    {
+        var lvlMulti = Mathf.Max(1, level + 1);
+        var amount = lvlMulti * lvlMulti * 10 * Mathf.Max(1, freeSpace);
+        EffectManager.AddTextPopup(amount.ToString(), pos + Vector3.up);
     }
 }

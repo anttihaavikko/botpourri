@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     private float biteDelay;
     private Vector3 wanderDirection;
     private float speed;
+    private int level;
 
     public void SetTarget(Bug player)
     {
@@ -51,9 +52,9 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void Setup(Enemies enemies, int level)
+    public void Setup(Enemies enemies, int lvl)
     {
-        bug.SetHealth(3 + level);
+        bug.SetHealth(3 + lvl);
         container = enemies;
         enemies.Add(this);
 
@@ -64,8 +65,10 @@ public class Enemy : MonoBehaviour
     {
         if (target)
         {
+            target.AddScore(level, transform.position);
             target.Leech();
         }
+        
         container.Remove(this);
         Destroy(gameObject);
     }

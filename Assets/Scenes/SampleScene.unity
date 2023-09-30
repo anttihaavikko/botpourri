@@ -2266,7 +2266,7 @@ MonoBehaviour:
   - {fileID: 5427275002781990538, guid: 151e945063c9543d287a3bb3c0ad8ef7, type: 3}
   - {fileID: 8914173635181715984, guid: 77c6032322e0d4cfaa4160c886690e7d, type: 3}
   - {fileID: -4883662183103485632, guid: 11d61410dd20a4aa38830e6dfc447b57, type: 3}
-  textPopupPrefab: {fileID: 0}
+  textPopupPrefab: {fileID: 2130478177, guid: 7fb0677df25fa4fca85f41ff927fe7ff, type: 3}
 --- !u!4 &1992049607
 Transform:
   m_ObjectHideFlags: 0
