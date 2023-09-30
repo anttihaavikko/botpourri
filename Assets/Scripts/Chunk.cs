@@ -19,6 +19,7 @@ public class Chunk : MonoBehaviour
         
         var node = Instantiate(nodePrefab, transform);
         node.transform.position = spawns.Skip(starter ? 1 : 0).ToList().Random().position.RandomOffset(3f);
+        node.Setup(Mathf.Max(Mathf.Abs(pos.x), Mathf.Abs(pos.y)));
         node.Hide();
     }
     

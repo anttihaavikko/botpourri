@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using AnttiStarterKit.Animations;
 using AnttiStarterKit.Extensions;
+using Mono.Cecil;
+using TMPro;
 using UnityEngine;
 
 public class Bug : MonoBehaviour
@@ -12,11 +14,21 @@ public class Bug : MonoBehaviour
     [SerializeField] private PathLine pathPrefab;
     [SerializeField] private Animator anim;
     [SerializeField] private Node currentNode;
-    [SerializeField] private LayerMask nodeMask;
+    [SerializeField] private LayerMask nodeMask, folderMask;
+    [SerializeField] private Tooltip tooltip;
+    [SerializeField] private TMP_Text stepDisplay;
+    [SerializeField] private CircleCollider2D visionArea;
+    
+    public int FreeSpace => freeSpace;
 
     private readonly List<PathLine> paths = new ();
     private bool moving;
     private bool blocked;
+    private int freeSpace;
+    private Folder folder;
+    private readonly List<Bonus> bonuses = new();
+
+    private int steps;
 
     private static readonly int Moving = Animator.StringToHash("moving");
 
@@ -24,6 +36,8 @@ public class Bug : MonoBehaviour
     {
         StartPath(currentNode.transform.position);
         currentNode.ToggleHitBox(false);
+        currentNode.Activate(this);
+        CalculateStats();
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -40,11 +54,18 @@ public class Bug : MonoBehaviour
         var path = Instantiate(pathPrefab, currentNode.transform.position, Quaternion.identity);
         path.SetStart(pos);
         paths.Add(path);
+        UpdateSteps();
     }
 
     private void Update()
     {
         UpdatePreviewLine();
+
+        if (Input.GetMouseButtonDown(0) && folder)
+        {
+            folder.Activate(this);
+            return;
+        }
 
         if (Input.GetMouseButtonDown(0) && !moving && !blocked)
         {
@@ -61,13 +82,15 @@ public class Bug : MonoBehaviour
             
             AddNode(pos);
             MoveTo(pos, true);
+            UpdateSteps();
 
             if (hit)
             {
+                currentNode.Clear();
                 currentNode.ToggleHitBox(true);
                 currentNode = hit.collider.GetComponent<Node>();
-                currentNode.Show();
-                currentNode.ToggleHitBox(false);
+                currentNode.Activate(this);
+                this.StartCoroutine(() => currentNode.ToggleHitBox(false), 0.6f);
                 StartPath(pos);
             }
         }
@@ -98,9 +121,9 @@ public class Bug : MonoBehaviour
 
     private void CheckReturn()
     {
-        if (paths.Last().Count <= 5) return;
-        ReturnTo(4);
-        this.StartCoroutine(() => StartPath(paths.Last().GetPoint(0)), 0.6f * 5);
+        if (paths.Last().Count <= steps) return;
+        ReturnTo(steps - 1);
+        this.StartCoroutine(() => StartPath(paths.Last().GetPoint(0)), 0.6f * (paths.Last().Count - 1));
     }
 
     private void ReturnTo(int index)
@@ -116,14 +139,29 @@ public class Bug : MonoBehaviour
 
     private void UpdatePreviewLine()
     {
-        if (moving)
+        var mousePos = cam.ScreenToWorldPoint(Input.mousePosition).WhereZ(0);
+
+        var hit = Physics2D.OverlapPoint(mousePos, folderMask);
+        if (hit)
+        {
+            folder = hit.GetComponent<Folder>();
+            folder.Mark(true, tooltip);
+        }
+        
+        if (moving || hit)
         {
             line.enabled = false;
             return;
         }
 
+        if (folder)
+        {
+            folder.Mark(false, tooltip);
+        }
+        
+        folder = null;
+
         line.enabled = true;
-        var mousePos = cam.ScreenToWorldPoint(Input.mousePosition).WhereZ(0);
 
         var p = transform.position;
         line.SetPosition(0, p);
@@ -133,5 +171,34 @@ public class Bug : MonoBehaviour
         blocked = paths.Any(path => path.Intersects(p, mousePos));
         line.startColor = line.endColor = blocked ? new Color(1, 1, 1, 0.25f) : Color.white;
     }
-    
+
+    public void AddSpace(int amount)
+    {
+        freeSpace += amount;
+        currentNode.UpdateScreen(this);
+    }
+
+    private void UpdateSteps()
+    {
+        stepDisplay.text = $"{paths.Last().Count - 1}/{steps}";
+    }
+
+    public void AddBonus(Bonus bonus)
+    {
+        bonuses.Add(bonus);
+        CalculateStats();
+    }
+
+    public void RemoveBonus(Bonus bonus)
+    {
+        bonuses.Remove(bonus);
+        CalculateStats();
+    }
+
+    private void CalculateStats()
+    {
+        steps = 3 + bonuses.Count(b => b.id == BonusId.Steps);
+        visionArea.radius = 3 + bonuses.Count(b => b.id == BonusId.Vision);
+        UpdateSteps();
+    }
 }
