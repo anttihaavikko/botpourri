@@ -17,11 +17,11 @@ public class Enemies
         enemies.Remove(e);
     }
 
-    public Enemy Find(Vector3 pos, float range)
+    public Enemy Find(Vector3 pos, float range, Enemy exclude = null)
     {
         return enemies
             .OrderBy(e => Vector3.Distance(pos, e.transform.position))
-            .FirstOrDefault(e => Vector3.Distance(pos, e.transform.position) < range);
+            .FirstOrDefault(e => e != exclude && Vector3.Distance(pos, e.transform.position) < range);
     }
 
     public Enemy GetRandom(Enemy enemy)

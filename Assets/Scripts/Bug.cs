@@ -26,6 +26,7 @@ public class Bug : MonoBehaviour
     [SerializeField] private LineDrawer lineDrawer;
     [SerializeField] private Health health;
     [SerializeField] private Transform visionRange;
+    [SerializeField] private GameObject shield;
 
     public int FreeSpace => freeSpace;
 
@@ -41,6 +42,9 @@ public class Bug : MonoBehaviour
     private float attackDelay;
     private float attackRange;
     private float speed;
+    private int damage;
+    private int shieldLeft, shieldMax;
+    private int chaining;
 
     private int steps;
 
@@ -97,8 +101,19 @@ public class Bug : MonoBehaviour
         if (target && shotDelay <= 0)
         {
             lineDrawer.AddThunderLine(transform.position + Vector3.up, target.transform.position + Vector3.up * 0.3f, new Color(5, 5, 0), 0.6f, 0.5f);
-            target.Damage(1);
+            target.Damage(damage);
             shotDelay = attackDelay;
+            
+            for (var i = 0; i < chaining; i++)
+            {
+                var chainTarget = enemies.Find(target.transform.position, attackRange, target);
+                if (chainTarget)
+                {
+                    lineDrawer.AddThunderLine(target.transform.position + Vector3.up * 0.3f, chainTarget.transform.position + Vector3.up * 0.3f, new Color(5, 5, 0), 0.6f, 0.5f);
+                    target = chainTarget;
+                    target.Damage(damage);
+                }
+            }
         }
 
         if (Input.GetMouseButtonDown(0) && folder)
@@ -258,11 +273,32 @@ public class Bug : MonoBehaviour
         attackDelay = 0.5f * Mathf.Pow(0.85f, SumOf(BonusId.ShotRate));
         attackRange = 5 + SumOf(BonusId.Vision) * 1.5f;
         speed = Mathf.Pow(0.85f, SumOf(BonusId.Speed)) * 0.25f;
+        damage = 1 + SumOf(BonusId.Damage);
+        shieldMax = SumOf(BonusId.Shield);
+        chaining = SumOf(BonusId.Chain);
         UpdateSteps();
+        
+        CancelInvoke(nameof(RegenerateShield));
+        Invoke(nameof(RegenerateShield), 1f);
+    }
+
+    private void RegenerateShield()
+    {
+        shieldLeft = shieldMax;
+        shield.SetActive(shieldLeft > 0);
     }
     
     public void Damage(int amount)
     {
+        if (shieldLeft > 0)
+        {
+            amount--;
+            shieldLeft--;
+            shield.SetActive(shieldLeft > 0);
+            CancelInvoke(nameof(RegenerateShield));
+            Invoke(nameof(RegenerateShield), 1.5f);
+        }
+        
         health?.TakeDamage<Bug>(amount);
     }
 
