@@ -25,6 +25,7 @@ public class Bug : MonoBehaviour
     [SerializeField] private bool isPlayer;
     [SerializeField] private LineDrawer lineDrawer;
     [SerializeField] private Health health;
+    [SerializeField] private Transform visionRange;
 
     public int FreeSpace => freeSpace;
 
@@ -250,8 +251,12 @@ public class Bug : MonoBehaviour
     {
         steps = 3 + SumOf(BonusId.Steps);
         visionArea.radius = 3 + SumOf(BonusId.Vision) * 0.5f;
-        attackDelay = 0.5f * Mathf.Pow(0.9f, SumOf(BonusId.ShotRate));
-        attackRange = 5 + SumOf(BonusId.Vision);
+        if (visionRange)
+        {
+            visionRange.localScale = Vector3.one * (visionArea.radius * 0.5f);   
+        }
+        attackDelay = 0.5f * Mathf.Pow(0.85f, SumOf(BonusId.ShotRate));
+        attackRange = 5 + SumOf(BonusId.Vision) * 1.5f;
         speed = Mathf.Pow(0.85f, SumOf(BonusId.Speed)) * 0.25f;
         UpdateSteps();
     }

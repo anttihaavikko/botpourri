@@ -1,3 +1,4 @@
+using Codice.Client.BaseCommands;
 using UnityEngine;
 
 namespace AnttiStarterKit.Animations
@@ -8,7 +9,10 @@ namespace AnttiStarterKit.Animations
 
         private void Update()
         {
-            transform.position = target.position;
+            if (target)
+            {
+                transform.position = target.position;   
+            }
         }
     }
 }

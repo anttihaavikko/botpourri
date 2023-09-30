@@ -1,6 +1,8 @@
 using System;
+using AnttiStarterKit.Extensions;
 using AnttiStarterKit.Game;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
@@ -11,17 +13,26 @@ public class Enemy : MonoBehaviour
     private Enemies container;
     private static readonly int Moving = Animator.StringToHash("moving");
     private float biteDelay;
+    private Vector3 wanderDirection;
+    private float speed;
 
     public void SetTarget(Bug player)
     {
+        speed = anim.speed = Random.Range(0.9f, 1.1f);
+        wanderDirection = Quaternion.Euler(0, 0, Random.value * 360f) * Vector3.up;
         target = player;
     }
 
     private void Update()
     {
         anim.SetBool(Moving, false);
-        
-        if (!target) return;
+
+        if (!target)
+        {
+            anim.SetBool(Moving, true);
+            transform.position = Vector3.MoveTowards(transform.position, transform.position + wanderDirection, Time.deltaTime * 1.5f * speed);
+            return;
+        }
         
         biteDelay = Mathf.MoveTowards(biteDelay, 0, Time.deltaTime);
 
@@ -29,7 +40,7 @@ public class Enemy : MonoBehaviour
         if (diff.magnitude > 0.7f)
         {
             anim.SetBool(Moving, true);
-            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, Time.deltaTime * 1.5f);
+            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, Time.deltaTime * 1.5f * speed);
             return;
         }
 

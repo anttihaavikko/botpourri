@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using AnttiStarterKit.Extensions;
 using UnityEngine;
 
 public class Enemies
@@ -21,5 +22,10 @@ public class Enemies
         return enemies
             .OrderBy(e => Vector3.Distance(pos, e.transform.position))
             .FirstOrDefault(e => Vector3.Distance(pos, e.transform.position) < range);
+    }
+
+    public Enemy GetRandom(Enemy enemy)
+    {
+        return enemies.Where(e => e != enemy).ToList().Random();
     }
 }

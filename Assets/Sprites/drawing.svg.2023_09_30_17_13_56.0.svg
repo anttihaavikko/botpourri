@@ -23,7 +23,7 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.35"
+     inkscape:zoom="0.7"
      inkscape:cx="1310"
      inkscape:cy="357.14286"
      inkscape:document-units="mm"
@@ -88,12 +88,10 @@
        inkscape:export-xdpi="93"
        inkscape:export-ydpi="93" />
     <circle
-       style="fill:none;stroke:#ffffff;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-dashoffset:0;stroke-miterlimit:4;stroke-dasharray:8,8"
+       style="fill:none;stroke:#ffffff;stroke-width:2.18431006;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:6.55293017,6.55293017;stroke-dashoffset:2.83960307"
        id="path842"
-       cx="549.1994"
-       cy="94.116074"
-       r="54.050598"
-       inkscape:export-xdpi="93"
-       inkscape:export-ydpi="93" />
+       cx="436.31622"
+       cy="256.71109"
+       r="59.839558" />
   </g>
 </svg>
