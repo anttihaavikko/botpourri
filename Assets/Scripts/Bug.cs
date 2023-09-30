@@ -37,6 +37,8 @@ public class Bug : MonoBehaviour
     private readonly Enemies enemies = new();
     private float shotDelay;
     private EffectCamera effectCam;
+    private float attackDelay;
+    private float attackRange;
 
     private int steps;
 
@@ -88,12 +90,12 @@ public class Bug : MonoBehaviour
 
         shotDelay = Mathf.MoveTowards(shotDelay, 0, Time.deltaTime);
 
-        var target = enemies.Find(transform.position, 5f);
+        var target = enemies.Find(transform.position, attackRange);
         if (target && shotDelay <= 0)
         {
             lineDrawer.AddThunderLine(transform.position + Vector3.up, target.transform.position + Vector3.up * 0.3f, new Color(5, 5, 0), 0.6f, 0.5f);
             target.Damage(1);
-            shotDelay = 0.5f;
+            shotDelay = attackDelay;
         }
 
         if (Input.GetMouseButtonDown(0) && folder)
@@ -234,7 +236,9 @@ public class Bug : MonoBehaviour
     private void CalculateStats()
     {
         steps = 3 + bonuses.Count(b => b.id == BonusId.Steps);
-        visionArea.radius = 3 + bonuses.Count(b => b.id == BonusId.Vision) * 0.5f;
+        visionArea.radius = 3 + bonuses.Where(b => b.id == BonusId.Vision).Sum(b => b.value) * 0.5f;
+        attackDelay = 0.5f * Mathf.Pow(0.9f, bonuses.Count(b => b.id == BonusId.ShotRate));
+        attackRange = 5 + bonuses.Count(b => b.id == BonusId.Vision);
         UpdateSteps();
     }
     
@@ -246,5 +250,10 @@ public class Bug : MonoBehaviour
     public void Shake(float amount)
     {
         effectCam.BaseEffect(amount);
+    }
+
+    public void SetHealth(int max)
+    {
+        health.Set(max, max);
     }
 }

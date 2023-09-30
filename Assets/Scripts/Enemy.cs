@@ -1,4 +1,5 @@
 using System;
+using AnttiStarterKit.Game;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -39,8 +40,9 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void SetupContainer(Enemies enemies)
+    public void Setup(Enemies enemies, int level)
     {
+        bug.SetHealth(3 + level);
         container = enemies;
         enemies.Add(this);
     }

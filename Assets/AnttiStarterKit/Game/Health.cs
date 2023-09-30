@@ -3,6 +3,7 @@ using AnttiStarterKit.Animations;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.PlayerLoop;
 
 namespace AnttiStarterKit.Game
 {
@@ -21,6 +22,13 @@ namespace AnttiStarterKit.Game
         public int Current => cur;
         public int Max => max;
         public float Ratio => 1f * cur / max;
+
+        public void Set(int c, int m)
+        {
+            cur = c;
+            max = m;
+            UpdateDisplays();
+        }
 
         public void Init()
         {

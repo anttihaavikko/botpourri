@@ -29,7 +29,7 @@ public class Chunk : MonoBehaviour
         
         foreach (var p in spots.TakeLast(1 + level))
         {
-            Instantiate(clusterPrefab, p.position.RandomOffset(3f), Quaternion.identity);
+            Instantiate(clusterPrefab, p.position.RandomOffset(3f), Quaternion.identity).SetLevel(level);
         }
     }
     
