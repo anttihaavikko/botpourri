@@ -11,20 +11,34 @@ public class Bug : MonoBehaviour
     [SerializeField] private LineRenderer line;
     [SerializeField] private PathLine pathPrefab;
     [SerializeField] private Animator anim;
+    [SerializeField] private Node currentNode;
+    [SerializeField] private LayerMask nodeMask;
 
     private readonly List<PathLine> paths = new ();
     private bool moving;
     private bool blocked;
+
     private static readonly int Moving = Animator.StringToHash("moving");
 
     private void Start()
     {
-        StartPath();
+        StartPath(currentNode.transform.position);
+        currentNode.ToggleHitBox(false);
     }
 
-    private void StartPath()
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        var path = Instantiate(pathPrefab, Vector3.zero, Quaternion.identity);
+        var node = col.GetComponent<Node>();
+        if (node)
+        {
+            node.Show();
+        }
+    }
+
+    private void StartPath(Vector3 pos)
+    {
+        var path = Instantiate(pathPrefab, currentNode.transform.position, Quaternion.identity);
+        path.SetStart(pos);
         paths.Add(path);
     }
 
@@ -34,9 +48,28 @@ public class Bug : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && !moving && !blocked)
         {
-            var mousePos = cam.ScreenToWorldPoint(Input.mousePosition).WhereZ(0);
-            AddNode(mousePos);
-            MoveTo(mousePos, true);
+            var pos = cam.ScreenToWorldPoint(Input.mousePosition).WhereZ(0);
+
+            var p = transform.position;
+            var dir = pos - p;
+            var hit = Physics2D.Raycast(p, dir, dir.magnitude, nodeMask);
+
+            if (hit)
+            {
+                pos = hit.point;
+            }
+            
+            AddNode(pos);
+            MoveTo(pos, true);
+
+            if (hit)
+            {
+                currentNode.ToggleHitBox(true);
+                currentNode = hit.collider.GetComponent<Node>();
+                currentNode.Show();
+                currentNode.ToggleHitBox(false);
+                StartPath(pos);
+            }
         }
     }
 
@@ -67,7 +100,7 @@ public class Bug : MonoBehaviour
     {
         if (paths.Last().Count <= 5) return;
         ReturnTo(4);
-        this.StartCoroutine(StartPath, 0.6f * 5);
+        this.StartCoroutine(() => StartPath(paths.Last().GetPoint(0)), 0.6f * 5);
     }
 
     private void ReturnTo(int index)

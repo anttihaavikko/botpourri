@@ -1,3 +1,4 @@
+using System;
 using UnityEditor.Tilemaps;
 using UnityEngine;
 
@@ -6,6 +7,11 @@ public class PathLine : MonoBehaviour
     [SerializeField] private LineRenderer line;
 
     public int Count => line.positionCount;
+
+    public void SetStart(Vector3 pos)
+    {
+        line.SetPosition(0, pos);
+    }
 
     public void AddPoint(Vector3 pos)
     {
