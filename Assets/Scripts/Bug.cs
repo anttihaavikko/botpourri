@@ -241,13 +241,18 @@ public class Bug : MonoBehaviour
         CalculateStats();
     }
 
+    private int SumOf(BonusId id)
+    {
+        return bonuses.Where(b => b.id == id).Sum(b => b.value);
+    }
+
     private void CalculateStats()
     {
-        steps = 3 + bonuses.Count(b => b.id == BonusId.Steps);
-        visionArea.radius = 3 + bonuses.Where(b => b.id == BonusId.Vision).Sum(b => b.value) * 0.5f;
-        attackDelay = 0.5f * Mathf.Pow(0.9f, bonuses.Count(b => b.id == BonusId.ShotRate));
-        attackRange = 5 + bonuses.Count(b => b.id == BonusId.Vision);
-        speed = Mathf.Pow(0.85f, bonuses.Count(b => b.id == BonusId.Speed)) * 0.25f;
+        steps = 3 + SumOf(BonusId.Steps);
+        visionArea.radius = 3 + SumOf(BonusId.Vision) * 0.5f;
+        attackDelay = 0.5f * Mathf.Pow(0.9f, SumOf(BonusId.ShotRate));
+        attackRange = 5 + SumOf(BonusId.Vision);
+        speed = Mathf.Pow(0.85f, SumOf(BonusId.Speed)) * 0.25f;
         UpdateSteps();
     }
     
