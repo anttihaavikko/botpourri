@@ -311,4 +311,18 @@ public class Bug : MonoBehaviour
     {
         health.Set(max, max);
     }
+
+    public void GameOver()
+    {
+        visionArea.gameObject.SetActive(false);
+    }
+
+    public void Leech()
+    {
+        var chance = Mathf.Pow(0.75f, SumOf(BonusId.Leech));
+        if (chance > 0)
+        {
+            health.Heal(1);
+        }
+    }
 }

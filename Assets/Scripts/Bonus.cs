@@ -36,7 +36,8 @@ public class Bonus
             new(BonusId.Vision, "Mind's Eye", "Enhances your vision radius.", 8, 5, 3, 2),
             new(BonusId.Damage, "Damage", "Increase your damage by one.", 24, 6, 2),
             new(BonusId.Shield, "Shield", "Gain a regenerating shield protecting you.", 32, 7, 3),
-            new(BonusId.Chain, "Chain", "Your attacks chain to next closest enemy.", 32, 8, 3)
+            new(BonusId.Chain, "Chain", "Your attacks chain to next closest enemy.", 32, 8, 3),
+            new(BonusId.Leech, "Leech", "Chance to heal yourself for one when killing an enemy.", 128, 9, 3)
         };
         
         return new Bonus(blueprints.Where(b => b.level <= level).ToList().Random());
@@ -53,7 +54,8 @@ public enum BonusId
     ShotRange,
     Damage,
     Shield,
-    Chain
+    Chain,
+    Leech
 }
 
 public class BonusBlueprint

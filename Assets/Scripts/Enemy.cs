@@ -56,10 +56,16 @@ public class Enemy : MonoBehaviour
         bug.SetHealth(3 + level);
         container = enemies;
         enemies.Add(this);
+
+        transform.localScale *= Random.Range(0.9f, 1.2f);
     }
 
     public void Die()
     {
+        if (target)
+        {
+            target.Leech();
+        }
         container.Remove(this);
         Destroy(gameObject);
     }

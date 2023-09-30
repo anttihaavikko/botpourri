@@ -271,7 +271,7 @@ TextureImporter:
         width: 360
         height: 270
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -292,7 +292,7 @@ TextureImporter:
         width: 276
         height: 366
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -300,6 +300,27 @@ TextureImporter:
       bones: []
       spriteID: a5b9de5dddce549948d4051926b51188
       internalID: 1474171065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: leech
+      rect:
+        serializedVersion: 2
+        x: 1880
+        y: 1406
+        width: 473
+        height: 377
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d9a771a7a8e545ff8d860880d3dbbf7
+      internalID: -1177344659
       vertices: []
       indices: 
       edges: []
@@ -329,6 +350,7 @@ TextureImporter:
       shield: -1958650472
       range: -321235186
       icons_8: -1849892386
+      leech: -1177344659
       icons_7: -1714893122
       icons_15: 1044983741
       icons_2: 43046027
