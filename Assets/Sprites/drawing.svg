@@ -23,7 +23,7 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.98994949"
+     inkscape:zoom="0.35"
      inkscape:cx="1687.9202"
      inkscape:cy="762.34741"
      inkscape:document-units="mm"
@@ -110,6 +110,14 @@
        cy="184.54959"
        rx="11.977972"
        ry="3.6926153"
+       inkscape:export-xdpi="93"
+       inkscape:export-ydpi="93" />
+    <circle
+       style="fill:none;stroke:#ffffff;stroke-width:14.99999991;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:29.99999982,29.99999982;stroke-dashoffset:29.99999982"
+       id="path842-5"
+       cx="740.81769"
+       cy="167.05783"
+       r="54.050598"
        inkscape:export-xdpi="93"
        inkscape:export-ydpi="93" />
   </g>
