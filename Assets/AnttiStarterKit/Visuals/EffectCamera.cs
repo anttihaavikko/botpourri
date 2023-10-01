@@ -33,6 +33,8 @@ namespace AnttiStarterKit.Visuals
         private ColorAdjustments cg;
         private static readonly int Amount = Shader.PropertyToID("_Amount");
         private CinemachineTransposer camTransposer;
+
+        private Coroutine stop;
         
         private static EffectCamera instance = null;
         public static EffectCamera Instance {
@@ -159,8 +161,12 @@ namespace AnttiStarterKit.Visuals
 
         public void TimeStop(int frames = 1)
         {
+            if (stop != default)
+            {
+                StopCoroutine(stop);
+            }
             Time.timeScale = 0f;
-            this.StartCoroutine(() => Time.timeScale = 1f, frames / 120f);
+            stop = this.StartCoroutine(() => Time.timeScale = 1f, frames / 120f);
         }
     }
 }

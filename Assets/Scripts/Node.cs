@@ -19,7 +19,11 @@ public class Node : MonoBehaviour
     {
         if (!booted)
         {
-            EffectManager.AddTextPopup($"+{space} <size=7>bytes</size>", transform.position + Vector3.up * 3);
+            if (space > 0)
+            {
+                EffectManager.AddTextPopup($"+{space} <size=7>bytes</size>", transform.position + Vector3.up * 3);
+            }
+            
             bug.AddSpace(space);
 
             var p = transform.position;
