@@ -14,6 +14,7 @@ public class Node : MonoBehaviour
     [SerializeField] private Folder left, right;
     [SerializeField] private SoundComposition bootSound;
     [SerializeField] private SoundComposition revealSound;
+    [SerializeField] private bool skipSound;
 
     private bool booted;
     private int space;
@@ -46,11 +47,14 @@ public class Node : MonoBehaviour
                 }
             }, 0.3f);
         }
-        
-        this.StartCoroutine(() =>
+
+        if (!skipSound)
         {
-            bootSound.Play(transform.position, 0.7f);
-        }, 0.3f);
+            this.StartCoroutine(() =>
+            {
+                bootSound.Play(transform.position, 0.7f);
+            }, 0.3f);   
+        }
 
         booted = true;
         UpdateScreen(bug);

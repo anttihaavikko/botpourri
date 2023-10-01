@@ -56,6 +56,11 @@ namespace AnttiStarterKit.Managers
 			DontDestroyOnLoad(instance.gameObject);
 		}
 
+		public void ChangePitch(float target)
+		{
+			curMusic.pitch = target;
+		}
+
 		public void BackToDefaultMusic()
 		{
 			if (curMusic != musics [0]) {

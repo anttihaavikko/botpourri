@@ -4588,6 +4588,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3120513202820545097, guid: 57b963b17a8b4452fb819520664bb989, type: 3}
+      propertyPath: skipSound
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3120513202820545099, guid: 57b963b17a8b4452fb819520664bb989, type: 3}
       propertyPath: m_RootOrder
       value: 8

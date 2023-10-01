@@ -75,6 +75,8 @@ public class Bug : MonoBehaviour
         nub.SetParent(null);
         
         if (!isPlayer) return;
+
+        AudioManager.Instance.TargetPitch = 1f;
         
         AddCircle(Vector3.zero);
         StartPath(currentNode.transform.position);
@@ -153,7 +155,7 @@ public class Bug : MonoBehaviour
             
             Look(target.transform);
             
-            shotSound.Play(pos, 0.5f);
+            shotSound.Play(pos, 0.3f);
             Nudge((pos - tp).normalized * 0.3f);
             
             for (var i = 0; i < chaining; i++)
@@ -390,6 +392,7 @@ public class Bug : MonoBehaviour
 
     public void GameOver()
     {
+        AudioManager.Instance.TargetPitch = 0f;
         Stutter(6);
         visionArea.gameObject.SetActive(false);
     }
@@ -417,6 +420,7 @@ public class Bug : MonoBehaviour
     public void AddScore(int level, Vector3 pos)
     {
         if (!score) return;
+        AudioManager.Instance.ChangePitch(1.2f);
         var lvlMulti = Mathf.Max(1, level + 1);
         var amount = lvlMulti * lvlMulti * 10 * Mathf.Max(1, freeSpace) * Mathf.Min(score.Multi, 64);
         EffectManager.AddTextPopup(amount.ToString(), pos + Vector3.up);
