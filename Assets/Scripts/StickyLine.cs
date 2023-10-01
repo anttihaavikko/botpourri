@@ -23,6 +23,7 @@ public class StickyLine : MonoBehaviour
         line.widthMultiplier = width;
         
         CalculateOffsets();
+        Update();
     }
 
     private void CalculateOffsets()
