@@ -5472,5 +5472,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Again Button
       objectReference: {fileID: 0}
+    - target: {fileID: 8595454906769518611, guid: 08f3095afb6104f02b457ff2cd32fcf1, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -3.799
+      objectReference: {fileID: 0}
+    - target: {fileID: 8595454906769518611, guid: 08f3095afb6104f02b457ff2cd32fcf1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.9000015
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08f3095afb6104f02b457ff2cd32fcf1, type: 3}
