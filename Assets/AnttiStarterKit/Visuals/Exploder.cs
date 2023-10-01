@@ -25,7 +25,7 @@ namespace AnttiStarterKit.Visuals
         {
             if (sound)
             {
-                sound.Play(point.position, 0.6f);
+                sound.Play(point.position, 0.4f);
             }
             
             if (effects.Any())
