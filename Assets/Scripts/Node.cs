@@ -32,6 +32,8 @@ public class Node : MonoBehaviour
                     installHelp.SetActive(true);
                     installHelp.transform.position = transform.position;
                     installHelp.SetActive(true);
+                    
+                    bug.TryHeal();
                 }
             }, 0.3f);
         }

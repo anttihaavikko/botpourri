@@ -95,6 +95,15 @@ public class Bug : MonoBehaviour
         }
     }
 
+    public void TryHeal()
+    {
+        var amount = SumOf(BonusId.Heal);
+        if (amount > 0)
+        {
+            Heal(amount);
+        }
+    }
+
     public void Look(Transform at)
     {
         face.LookTarget = at;
@@ -376,9 +385,14 @@ public class Bug : MonoBehaviour
         var chance = Mathf.Pow(0.75f, SumOf(BonusId.Leech));
         if (Random.value > chance)
         {
-            healEffect.Play();
-            health.Heal(1);
+            Heal(1);
         }
+    }
+
+    private void Heal(int amount)
+    {
+        healEffect.Play();
+        health.Heal(amount);
     }
 
     public void AddScore(int level, Vector3 pos)

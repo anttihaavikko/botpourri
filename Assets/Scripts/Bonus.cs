@@ -40,7 +40,8 @@ public class Bonus
             new(BonusId.Leech, "Leech", "Chance to heal yourself for one when killing an enemy.", 128, 9, 3),
             new(BonusId.Sensor, "Sensor", "Gain ability to sense points of interest.", 128, 10, 2),
             new(BonusId.Speed, "Wings", "Dramatically increase your movement speed.", 8, 11, 2, 2),
-            new(BonusId.Repel, "Repel", "Push back spawning enemies away from you.", 64, 12, 2)
+            new(BonusId.Repel, "Repel", "Push back spawning enemies away from you.", 64, 12, 2),
+            new(BonusId.Heal, "Repair", "Heal for one when booting up a new node.", 32, 13, 2)
         };
         
         return new Bonus(blueprints.Where(b => b.level <= level).ToList().Random());
@@ -60,7 +61,8 @@ public enum BonusId
     Chain,
     Leech,
     Sensor,
-    Repel
+    Repel,
+    Heal
 }
 
 public class BonusBlueprint

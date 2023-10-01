@@ -305,7 +305,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: leech
+      name: heal
       rect:
         serializedVersion: 2
         x: 1880
@@ -376,7 +376,7 @@ TextureImporter:
         width: 294
         height: 198
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -384,6 +384,27 @@ TextureImporter:
       bones: []
       spriteID: 48feb91c44ccd4256ae65f021d500ae2
       internalID: 2084093007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: leech
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 510
+        width: 317
+        height: 257
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0703c74d5ed646058890dcd01a221da
+      internalID: 78668344
       vertices: []
       indices: 
       edges: []
@@ -415,7 +436,8 @@ TextureImporter:
       shield: -1958650472
       range: -321235186
       icons_8: -1849892386
-      leech: -1177344659
+      heal: -1177344659
+      leech: 78668344
       icons_7: -1714893122
       icons_15: 1044983741
       icons_2: 43046027
