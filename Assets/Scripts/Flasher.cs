@@ -12,6 +12,7 @@ public class Flasher : MonoBehaviour
     [SerializeField] private List<SpriteRenderer> spritesNeedingShader;
     [SerializeField] private Material whiteMaterial;
     [SerializeField] private List<TMP_Text> characters;
+    [SerializeField] private List<GameObject> toHide;
 
     [SerializeField] private float duration = 0.1f;
     
@@ -70,6 +71,7 @@ public class Flasher : MonoBehaviour
         lines.ForEach(l => l.startColor = l.endColor = color);
         characters.ForEach(c => c.color = c.outlineColor = color);
         extraCharacters.Where(e => e).ToList().ForEach(c => c.color = c.outlineColor = color);
+        toHide.ForEach(o => o.SetActive(false));
     }
 
     public void ResetColor()
@@ -87,5 +89,7 @@ public class Flasher : MonoBehaviour
             c.color = extraCharacterColors[extraCharacters.IndexOf(c)];
             c.outlineColor = Color.black;
         });
+        
+        toHide.ForEach(o => o.SetActive(true));
     }
 }

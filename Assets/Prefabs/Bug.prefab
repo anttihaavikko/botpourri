@@ -2589,7 +2589,7 @@ MonoBehaviour:
   - {fileID: 48214443140170972}
   - {fileID: 48214443294661489}
   spritesNeedingShader: []
-  whiteMaterial: {fileID: 0}
+  whiteMaterial: {fileID: 2100000, guid: 66b9901f2bc3147389ffbe8f3c61a9a0, type: 2}
   characters: []
   duration: 0.1
   extraCharacters: []

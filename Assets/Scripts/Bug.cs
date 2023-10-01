@@ -34,6 +34,7 @@ public class Bug : MonoBehaviour
     [SerializeField] private GameObject installHelp;
     [SerializeField] private Color shotColor;
     [SerializeField] private TMP_Text spaceDisplay;
+    [SerializeField] private GameObject previewSpot;
 
     public int FreeSpace => freeSpace;
     public bool HasNoBonuses => bonuses.Count == 0;
@@ -224,6 +225,7 @@ public class Bug : MonoBehaviour
         if (moving || hit || paths.Last().Count > steps)
         {
             line.enabled = false;
+            previewSpot.SetActive(false);
             return;
         }
 
@@ -235,11 +237,14 @@ public class Bug : MonoBehaviour
         folder = null;
 
         line.enabled = true;
+        previewSpot.SetActive(true);
+        previewSpot.transform.position = mousePos;
 
         var p = transform.position;
         line.SetPosition(0, p);
         line.SetPosition(1, p * 0.25f + mousePos * 0.75f);
         line.SetPosition(2, mousePos);
+        // line.material.mainTextureScale = new Vector2(Vector2.Distance(mousePos, p) * 2, 0);
 
         blocked = paths.Any(path => path.Intersects(p, mousePos));
         line.startColor = line.endColor = blocked ? new Color(1, 1, 1, 0.25f) : Color.white;
