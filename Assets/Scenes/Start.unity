@@ -1323,7 +1323,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundCollection: {fileID: 0}
   hiddenSize: {x: 0, y: 0, z: 0}
-  appearAfter: 1.3
+  appearAfter: 0.8
   hideDelay: 0
   silent: 0
   visuals: {fileID: 0}
@@ -1705,7 +1705,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundCollection: {fileID: 0}
   hiddenSize: {x: 0, y: 0, z: 0}
-  appearAfter: 1.1
+  appearAfter: 0.5
   hideDelay: 0
   silent: 0
   visuals: {fileID: 0}
@@ -1909,7 +1909,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundCollection: {fileID: 0}
   hiddenSize: {x: 0, y: 0, z: 0}
-  appearAfter: 1.5
+  appearAfter: 1.1
   hideDelay: 0
   silent: 0
   visuals: {fileID: 0}
