@@ -62,6 +62,8 @@ public class Enemy : MonoBehaviour
 
         if (target && biteDelay <= 0)
         {
+            target.Stutter(4);
+            bug.OpenMouth();
             var p = transform.position;
             biteSound.Play(p);
             bug.Nudge((tp - pos).normalized * 0.3f);

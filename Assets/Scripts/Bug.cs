@@ -45,6 +45,7 @@ public class Bug : MonoBehaviour
     [SerializeField] private Transform shotPoint;
     [SerializeField] private SoundComposition shotSound, placeSound;
     [SerializeField] private GameObject gameOverMenu;
+    [SerializeField] private GameObject openMouth;
 
     public int FreeSpace => freeSpace;
     public bool HasNoBonuses => bonuses.Count == 0;
@@ -104,6 +105,12 @@ public class Bug : MonoBehaviour
         }
     }
 
+    public void OpenMouth()
+    {
+        openMouth.SetActive(true);
+        this.StartCoroutine(() => openMouth.SetActive(false), 0.1f);
+    }
+
     public void TryHeal()
     {
         var amount = SumOf(BonusId.Heal);
@@ -153,6 +160,8 @@ public class Bug : MonoBehaviour
             lineDrawer.AddThunderLine(shotPoint, target.Center, shotColor, 0.6f, 0.5f);
             target.Damage(damage);
             shotDelay = attackDelay;
+            
+            OpenMouth();
             
             Look(target.transform);
             
