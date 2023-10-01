@@ -3467,6 +3467,7 @@ MonoBehaviour:
   - {fileID: -4883662183103485632, guid: 11d61410dd20a4aa38830e6dfc447b57, type: 3}
   - {fileID: 8914173635181715984, guid: 639499b6c970f46adb8251b0e337a809, type: 3}
   - {fileID: 5427275002781990538, guid: 6480dbfacce5447b08f0a35e8f33886f, type: 3}
+  - {fileID: 5427275002781990538, guid: dc343c96cc7d442d2a7e14691cb8ea23, type: 3}
   textPopupPrefab: {fileID: 2130478177, guid: 7fb0677df25fa4fca85f41ff927fe7ff, type: 3}
 --- !u!4 &1992049607
 Transform:

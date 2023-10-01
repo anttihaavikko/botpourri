@@ -59,6 +59,11 @@ public class Node : MonoBehaviour
 
     public void Show()
     {
+        if (!ring.enabled)
+        {
+            EffectManager.AddEffect(4, transform.position);   
+        }
+
         ring.enabled = true;
         visuals.SetActive(true);
     }

@@ -39,6 +39,7 @@ public class Bug : MonoBehaviour
     [SerializeField] private Color pathColor;
     [SerializeField] private Face face;
     [SerializeField] private Transform center;
+    [SerializeField] private ParticleSystem healEffect;
 
     public int FreeSpace => freeSpace;
     public bool HasNoBonuses => bonuses.Count == 0;
@@ -375,6 +376,7 @@ public class Bug : MonoBehaviour
         var chance = Mathf.Pow(0.75f, SumOf(BonusId.Leech));
         if (Random.value > chance)
         {
+            healEffect.Play();
             health.Heal(1);
         }
     }

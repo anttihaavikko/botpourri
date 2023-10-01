@@ -1,6 +1,7 @@
 using System;
 using AnttiStarterKit.Extensions;
 using AnttiStarterKit.Game;
+using AnttiStarterKit.Managers;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -20,6 +21,11 @@ public class Enemy : MonoBehaviour
     private int level;
 
     public Transform Center => center;
+
+    private void Start()
+    {
+        EffectManager.AddEffect(5, transform.position);
+    }
 
     public void SetTarget(Bug player)
     {

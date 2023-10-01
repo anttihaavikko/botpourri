@@ -1,4 +1,5 @@
 using AnttiStarterKit.Extensions;
+using AnttiStarterKit.Managers;
 using UnityEngine;
 
 public class Cluster : MonoBehaviour
@@ -22,6 +23,8 @@ public class Cluster : MonoBehaviour
             enemy.SetTarget(player);
             enemy.Push(player.transform.position, pushAmount);
         }
+        
+        EffectManager.AddEffect(4, transform.position);
     }
 
     public void SetLevel(int lvl)
