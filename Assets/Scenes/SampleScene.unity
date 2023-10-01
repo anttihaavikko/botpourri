@@ -1829,6 +1829,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0867a5a7a1b24e8683a0a8a4dea24c6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &889564221 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2390667284083956051, guid: a3cc367600ad649418e8ffd8c9e277cf, type: 3}
+  m_PrefabInstance: {fileID: 48214443113219873}
+  m_PrefabAsset: {fileID: 0}
+--- !u!231 &889564228
+SpringJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 889564221}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 1782998510}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_AutoConfigureConnectedAnchor: 0
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: 0, y: 0.65}
+  m_AutoConfigureDistance: 0
+  m_Distance: 1
+  m_DampingRatio: 0.99
+  m_Frequency: 2
 --- !u!1 &920819944
 GameObject:
   m_ObjectHideFlags: 0
@@ -2244,7 +2269,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1356877978}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 564eebe353ca4b03ae4d604342f25dcc, type: 3}
   m_Name: 
@@ -3087,6 +3112,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 2
+--- !u!50 &1782998510 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 48214443778285858, guid: a3cc367600ad649418e8ffd8c9e277cf, type: 3}
+  m_PrefabInstance: {fileID: 48214443113219873}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1865689150
 GameObject:
   m_ObjectHideFlags: 0
@@ -4236,6 +4266,26 @@ PrefabInstance:
     - target: {fileID: 48214443778286303, guid: a3cc367600ad649418e8ffd8c9e277cf, type: 3}
       propertyPath: health.onDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1926843506577371553, guid: a3cc367600ad649418e8ffd8c9e277cf, type: 3}
+      propertyPath: m_Distance
+      value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 1926843506577371553, guid: a3cc367600ad649418e8ffd8c9e277cf, type: 3}
+      propertyPath: m_Frequency
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1926843506577371553, guid: a3cc367600ad649418e8ffd8c9e277cf, type: 3}
+      propertyPath: m_DampingRatio
+      value: 0.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 1926843506577371553, guid: a3cc367600ad649418e8ffd8c9e277cf, type: 3}
+      propertyPath: m_AutoConfigureDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4581764552218342143, guid: a3cc367600ad649418e8ffd8c9e277cf, type: 3}
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4945052854037564983, guid: a3cc367600ad649418e8ffd8c9e277cf, type: 3}
       propertyPath: shakeAmount

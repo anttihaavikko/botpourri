@@ -160,7 +160,7 @@ namespace AnttiStarterKit.Visuals
         public void TimeStop(int frames = 1)
         {
             Time.timeScale = 0f;
-            this.StartCoroutine(() => Time.timeScale = 1f, frames / 60f);
+            this.StartCoroutine(() => Time.timeScale = 1f, frames / 120f);
         }
     }
 }

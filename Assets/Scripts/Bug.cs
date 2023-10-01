@@ -40,6 +40,8 @@ public class Bug : MonoBehaviour
     [SerializeField] private Face face;
     [SerializeField] private Transform center;
     [SerializeField] private ParticleSystem healEffect;
+    [SerializeField] private Transform nub;
+    
 
     public int FreeSpace => freeSpace;
     public bool HasNoBonuses => bonuses.Count == 0;
@@ -67,6 +69,8 @@ public class Bug : MonoBehaviour
     private void Start()
     {
         effectCam = Camera.main.GetComponent<EffectCamera>();
+        
+        nub.SetParent(null);
         
         if (!isPlayer) return;
         
@@ -377,6 +381,7 @@ public class Bug : MonoBehaviour
 
     public void GameOver()
     {
+        Stutter(6);
         visionArea.gameObject.SetActive(false);
     }
 
@@ -393,6 +398,11 @@ public class Bug : MonoBehaviour
     {
         healEffect.Play();
         health.Heal(amount);
+    }
+
+    public void Stutter(int frames)
+    {
+        effectCam.TimeStop(frames);
     }
 
     public void AddScore(int level, Vector3 pos)

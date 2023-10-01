@@ -79,6 +79,7 @@ public class Enemy : MonoBehaviour
     {
         if (target)
         {
+            target.Stutter(6);
             target.AddScore(level, transform.position);
             target.Leech();
         }
@@ -89,6 +90,11 @@ public class Enemy : MonoBehaviour
 
     public void Damage(int amount)
     {
+        if (target)
+        {
+            target.Stutter(1);
+        }
+        
         bug.Damage(amount);
     }
 
