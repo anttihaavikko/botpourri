@@ -48,6 +48,7 @@ public class Bug : MonoBehaviour
     [SerializeField] private GameObject gameOverMenu;
     [SerializeField] private GameObject openMouth;
     [SerializeField] private ScoreManager scoreManager;
+    [SerializeField] private TMP_Text nameDisplay;
 
     public int FreeSpace => freeSpace;
     public bool HasNoBonuses => bonuses.Count == 0;
@@ -89,6 +90,8 @@ public class Bug : MonoBehaviour
         currentNode.Activate(this, installHelp);
         currentNode.Setup(0);
         CalculateStats();
+
+        nameDisplay.text = PlayerPrefs.GetString("PlayerName", "Anon");
     }
 
     private void OnTriggerEnter2D(Collider2D col)
