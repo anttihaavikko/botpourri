@@ -289,7 +289,7 @@ public class Bug : MonoBehaviour
         var p = transform.position;
         line.SetPosition(0, p);
         line.SetPosition(1, p * 0.25f + mousePos * 0.75f);
-        line.SetPosition(2, mousePos);
+        line.SetPosition(2, Vector3.MoveTowards(mousePos, p, 0.3f));
         // line.material.mainTextureScale = new Vector2(Vector2.Distance(mousePos, p) * 2, 0);
 
         blocked = paths.Any(path => path.Intersects(p, mousePos));
