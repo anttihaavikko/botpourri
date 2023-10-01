@@ -35,6 +35,7 @@ public class Bug : MonoBehaviour
     [SerializeField] private Color shotColor;
     [SerializeField] private TMP_Text spaceDisplay;
     [SerializeField] private GameObject previewSpot;
+    [SerializeField] private Transform nudgeRoot;
 
     public int FreeSpace => freeSpace;
     public bool HasNoBonuses => bonuses.Count == 0;
@@ -98,8 +99,15 @@ public class Bug : MonoBehaviour
         UpdateSteps();
     }
 
+    public void Nudge(Vector3 dir)
+    {
+        nudgeRoot.position = nudgeRoot.parent.position + dir;
+    }
+
     private void Update()
     {
+        nudgeRoot.position = Vector3.MoveTowards(nudgeRoot.position, nudgeRoot.parent.position, Time.deltaTime * 0.5f);
+        
         if (!isPlayer) return;
 
         UpdatePreviewLine();
@@ -109,9 +117,13 @@ public class Bug : MonoBehaviour
         var target = enemies.Find(transform.position, attackRange);
         if (target && shotDelay <= 0)
         {
-            lineDrawer.AddThunderLine(transform.position + Vector3.up, target.transform.position + Vector3.up * 0.3f, shotColor, 0.6f, 0.5f);
+            var tp = target.transform.position;
+            var pos = transform.position;
+            lineDrawer.AddThunderLine(pos + Vector3.up, tp + Vector3.up * 0.3f, shotColor, 0.6f, 0.5f);
             target.Damage(damage);
             shotDelay = attackDelay;
+            
+            Nudge((pos - tp).normalized * 0.3f);
             
             for (var i = 0; i < chaining; i++)
             {

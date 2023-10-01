@@ -27,27 +27,30 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
+        var pos = transform.position;
         anim.SetBool(Moving, false);
 
         if (!target)
         {
             anim.SetBool(Moving, true);
-            transform.position = Vector3.MoveTowards(transform.position, transform.position + wanderDirection, Time.deltaTime * 1.5f * speed);
+            transform.position = Vector3.MoveTowards(transform.position, pos + wanderDirection, Time.deltaTime * 1.5f * speed);
             return;
         }
         
         biteDelay = Mathf.MoveTowards(biteDelay, 0, Time.deltaTime);
 
-        var diff = target.transform.position - transform.position;
+        var tp = target.transform.position;
+        var diff = tp - transform.position;
         if (diff.magnitude > 0.7f)
         {
             anim.SetBool(Moving, true);
-            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, Time.deltaTime * 1.5f * speed);
+            transform.position = Vector3.MoveTowards(transform.position, tp, Time.deltaTime * 1.5f * speed);
             return;
         }
 
         if (target && biteDelay <= 0)
         {
+            bug.Nudge((tp - pos).normalized * 0.3f);
             target.Damage(1);
             biteDelay = 0.75f;
         }
