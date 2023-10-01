@@ -325,6 +325,8 @@ MonoBehaviour:
   folders: {fileID: 39900905075673882}
   left: {fileID: 6327333442378830870}
   right: {fileID: 5392618777147012125}
+  bootSound: {fileID: 11400000, guid: 9df7cae12f38a47c7bd076d21df9a59e, type: 2}
+  revealSound: {fileID: 11400000, guid: 02ca6d88887484979af844b0673ba7bb, type: 2}
 --- !u!70 &3120513202820545096
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using AnttiStarterKit.Managers;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -41,6 +42,8 @@ public class Folder : MonoBehaviour
 
     public void Activate(Bug bug)
     {
+        AudioManager.Instance.PlayEffectAt(0, transform.position, 0.5f);
+        
         if (activated)
         {
             activated = false;

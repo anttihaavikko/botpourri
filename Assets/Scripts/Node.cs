@@ -2,6 +2,7 @@ using AnttiStarterKit.Managers;
 using TMPro;
 using UnityEngine;
 using AnttiStarterKit.Extensions;
+using AnttiStarterKit.ScriptableObjects;
 
 public class Node : MonoBehaviour
 {
@@ -11,12 +12,16 @@ public class Node : MonoBehaviour
     [SerializeField] private TMP_Text screen;
     [SerializeField] private GameObject folders;
     [SerializeField] private Folder left, right;
-    
+    [SerializeField] private SoundComposition bootSound;
+    [SerializeField] private SoundComposition revealSound;
+
     private bool booted;
     private int space;
 
     public void Activate(Bug bug, GameObject installHelp)
     {
+        if (Vector3.Distance(transform.position, Vector3.zero) < 3.5f) return; 
+        
         if (!booted)
         {
             if (space > 0)
@@ -42,6 +47,11 @@ public class Node : MonoBehaviour
             }, 0.3f);
         }
         
+        this.StartCoroutine(() =>
+        {
+            bootSound.Play(transform.position, 0.7f);
+        }, 0.3f);
+
         booted = true;
         UpdateScreen(bug);
         folders.SetActive(true);
@@ -67,6 +77,7 @@ public class Node : MonoBehaviour
     {
         if (!ring.enabled)
         {
+            revealSound.Play(transform.position, 0.5f);
             EffectManager.AddEffect(4, transform.position);   
         }
 

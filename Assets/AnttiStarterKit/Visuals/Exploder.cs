@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AnttiStarterKit.Extensions;
 using AnttiStarterKit.Managers;
+using AnttiStarterKit.ScriptableObjects;
 using UnityEngine;
 
 namespace AnttiStarterKit.Visuals
@@ -11,6 +12,7 @@ namespace AnttiStarterKit.Visuals
         [SerializeField] private List<int> effects;
         [SerializeField] private float shakeAmount = 0.5f;
         [SerializeField] private Transform point;
+        [SerializeField] private SoundComposition sound;
 
         private EffectCamera cam;
 
@@ -21,6 +23,11 @@ namespace AnttiStarterKit.Visuals
 
         public void Explode()
         {
+            if (sound)
+            {
+                sound.Play(point.position, 0.6f);
+            }
+            
             if (effects.Any())
             {
                 EffectManager.AddEffects(effects, point.position);    

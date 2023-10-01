@@ -1,10 +1,12 @@
 using AnttiStarterKit.Extensions;
 using AnttiStarterKit.Managers;
+using AnttiStarterKit.ScriptableObjects;
 using UnityEngine;
 
 public class Cluster : MonoBehaviour
 {
     [SerializeField] private Enemy prefab;
+    [SerializeField] private SoundComposition revealSound;
 
     private bool triggered;
     private int level;
@@ -15,6 +17,8 @@ public class Cluster : MonoBehaviour
         
         if (triggered) return;
         triggered = true;
+        
+        revealSound.Play(transform.position, 0.5f);
 
         for (var i = 0; i < level * 0.5f + 1; i++)
         {

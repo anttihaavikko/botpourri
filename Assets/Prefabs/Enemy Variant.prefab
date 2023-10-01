@@ -860,6 +860,7 @@ MonoBehaviour:
   bug: {fileID: 8980181578088338784}
   body: {fileID: 8980181578088339101}
   center: {fileID: 8980181576890471030}
+  biteSound: {fileID: 11400000, guid: c04d4efb1dca94d0b9e7705fa1a0ad9a, type: 2}
 --- !u!50 &8980181578088339101 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 48214443778285858, guid: a3cc367600ad649418e8ffd8c9e277cf, type: 3}

@@ -2268,6 +2268,7 @@ GameObject:
   - component: {fileID: 48214443778285858}
   - component: {fileID: 2921439311923984395}
   - component: {fileID: 4945052854037564983}
+  - component: {fileID: 307036748786311009}
   m_Layer: 6
   m_Name: Bug
   m_TagString: Untagged
@@ -2390,6 +2391,7 @@ MonoBehaviour:
   healEffect: {fileID: 7229475260473170211}
   nub: {fileID: 2477028595570629690}
   shotPoint: {fileID: 4738560591541557135}
+  shotSound: {fileID: 11400000, guid: ee7897e0b3cdc4a62b30c1cf9915cd00, type: 2}
 --- !u!120 &48214443778286300
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -2620,6 +2622,22 @@ MonoBehaviour:
   effects: 00000000010000000200000003000000
   shakeAmount: 0.6
   point: {fileID: 48214442312508873}
+  sound: {fileID: 11400000, guid: 08584d1f4d140494a81ce1bfae440f57, type: 2}
+--- !u!114 &307036748786311009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 48214443778286298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71e288b794a54f699b4b3699b8b19255, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: {fileID: 0}
+  composition: {fileID: 11400000, guid: 4d8366da4c1d04498871abf5c6fb4990, type: 2}
+  volume: 0.2
 --- !u!1 &774990957727622462
 GameObject:
   m_ObjectHideFlags: 0

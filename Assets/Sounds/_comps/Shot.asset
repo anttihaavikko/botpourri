@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fc3c62a61c64e6b8fb81ac647261eee, type: 3}
+  m_Name: Shot
+  m_EditorClassIdentifier: 
+  rows:
+  - clip: {fileID: 8300000, guid: bb75eb2d4dfad4e15a4621a8999348b8, type: 3}
+    volume: 0.68
+  - clip: {fileID: 8300000, guid: 6c24ba588e2ab4e77928a79e92c33468, type: 3}
+    volume: 0.29
+  - clip: {fileID: 8300000, guid: 05ba6ee90606a4e0885c7e4178a379d5, type: 3}
+    volume: 0.29
+  - clip: {fileID: 8300000, guid: 91016ec797fd94ef0a466b3381456a9e, type: 3}
+    volume: 0.45
+  - clip: {fileID: 8300000, guid: 4077c33f4b6f547419686e57bd180dac, type: 3}
+    volume: 0.62
+  - clip: {fileID: 8300000, guid: c272d158afeed461fbecf48fca9f0202, type: 3}
+    volume: 0.07
+  - clip: {fileID: 8300000, guid: 5adf74d65e13b4a3f83d47c65fcc4149, type: 3}
+    volume: 0.81
+  collections: []

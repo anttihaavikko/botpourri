@@ -3253,7 +3253,8 @@ MonoBehaviour:
   musics:
   - {fileID: 2054058322}
   volume: 0.5
-  effects: []
+  effects:
+  - {fileID: 8300000, guid: 6a3827218518249a496b1d9736d75b84, type: 3}
   soundCollections: []
 --- !u!4 &1796631155
 Transform:
@@ -4446,6 +4447,10 @@ PrefabInstance:
       propertyPath: lineDrawer
       value: 
       objectReference: {fileID: 2005479055}
+    - target: {fileID: 48214443778286303, guid: a3cc367600ad649418e8ffd8c9e277cf, type: 3}
+      propertyPath: placeSound
+      value: 
+      objectReference: {fileID: 11400000, guid: 2a5d76e7f5b934e5384fb16c5d843006, type: 2}
     - target: {fileID: 48214443778286303, guid: a3cc367600ad649418e8ffd8c9e277cf, type: 3}
       propertyPath: currentNode
       value: 

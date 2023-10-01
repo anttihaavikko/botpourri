@@ -147,3 +147,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 1991812213286743630, guid: de8e4f605809e433d80a0bd8958b09c8, type: 3}
+  revealSound: {fileID: 11400000, guid: 02ca6d88887484979af844b0673ba7bb, type: 2}

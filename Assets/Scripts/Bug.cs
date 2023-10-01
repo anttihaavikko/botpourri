@@ -5,6 +5,7 @@ using AnttiStarterKit.Animations;
 using AnttiStarterKit.Extensions;
 using AnttiStarterKit.Game;
 using AnttiStarterKit.Managers;
+using AnttiStarterKit.ScriptableObjects;
 using AnttiStarterKit.Utils;
 using AnttiStarterKit.Visuals;
 using Mono.Cecil;
@@ -42,6 +43,7 @@ public class Bug : MonoBehaviour
     [SerializeField] private ParticleSystem healEffect;
     [SerializeField] private Transform nub;
     [SerializeField] private Transform shotPoint;
+    [SerializeField] private SoundComposition shotSound, placeSound;
 
     public int FreeSpace => freeSpace;
     public bool HasNoBonuses => bonuses.Count == 0;
@@ -144,13 +146,14 @@ public class Bug : MonoBehaviour
 
             shotPoint.position = Vector3.MoveTowards(center.position, tp, 0.7f);
             EffectManager.AddEffect(6, shotPoint.position);
-            
+
             lineDrawer.AddThunderLine(shotPoint, target.Center, shotColor, 0.6f, 0.5f);
             target.Damage(damage);
             shotDelay = attackDelay;
             
             Look(target.transform);
             
+            shotSound.Play(pos, 0.5f);
             Nudge((pos - tp).normalized * 0.3f);
             
             for (var i = 0; i < chaining; i++)
@@ -183,6 +186,8 @@ public class Bug : MonoBehaviour
             {
                 pos = hit.point;
             }
+            
+            placeSound.Play(pos, 0.3f);
             
             AddNode(pos);
             var delay = MoveTo(pos, true);

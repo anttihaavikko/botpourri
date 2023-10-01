@@ -2,6 +2,7 @@ using System;
 using AnttiStarterKit.Extensions;
 using AnttiStarterKit.Game;
 using AnttiStarterKit.Managers;
+using AnttiStarterKit.ScriptableObjects;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -11,6 +12,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Bug bug;
     [SerializeField] private Rigidbody2D body;
     [SerializeField] private Transform center;
+    [SerializeField] private SoundComposition biteSound;
 
     private Bug target;
     private Enemies container;
@@ -60,6 +62,7 @@ public class Enemy : MonoBehaviour
 
         if (target && biteDelay <= 0)
         {
+            biteSound.Play(transform.position);
             bug.Nudge((tp - pos).normalized * 0.3f);
             target.Damage(1);
             biteDelay = 0.75f;

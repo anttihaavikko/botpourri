@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fc3c62a61c64e6b8fb81ac647261eee, type: 3}
+  m_Name: Boot
+  m_EditorClassIdentifier: 
+  rows:
+  - clip: {fileID: 8300000, guid: 416fe13ad8a89475088426e66b9a772f, type: 3}
+    volume: 1
+  - clip: {fileID: 8300000, guid: 89715ce40431f4f9db9cdc5ec44e3c1d, type: 3}
+    volume: 1
+  - clip: {fileID: 8300000, guid: 788cc81d2f5844555bf589dc3c0ee697, type: 3}
+    volume: 1.51
+  - clip: {fileID: 8300000, guid: 8c85981c8b15541bbad44c187c971796, type: 3}
+    volume: 0.73
+  collections: []
