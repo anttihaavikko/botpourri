@@ -72,7 +72,7 @@ public class Node : MonoBehaviour
 
     public void Clear()
     {
-        screen.text = ">";
+        screen.text = ">_";
         folders.SetActive(false);
     }
 
