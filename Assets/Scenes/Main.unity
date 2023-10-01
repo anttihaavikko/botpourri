@@ -3462,7 +3462,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8595454905360392416, guid: 08f3095afb6104f02b457ff2cd32fcf1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Main
+      value: Start
       objectReference: {fileID: 0}
     - target: {fileID: 8595454905360392416, guid: 08f3095afb6104f02b457ff2cd32fcf1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -4093,7 +4093,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2008939014}
   m_Layer: 0
-  m_Name: Cam rig
+  m_Name: Cam Rig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

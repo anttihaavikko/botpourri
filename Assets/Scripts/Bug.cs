@@ -61,7 +61,7 @@ public class Bug : MonoBehaviour
     private EffectCamera effectCam;
     private float attackDelay;
     private float attackRange;
-    private float speed;
+    private float speed = 0.4f;
     private int damage;
     private int shieldLeft, shieldMax;
     private int chaining;
@@ -232,7 +232,7 @@ public class Bug : MonoBehaviour
         circle.color = pathColor;
     }
 
-    private float MoveTo(Vector3 pos, bool manual = false)
+    public float MoveTo(Vector3 pos, bool manual = false)
     {
         CancelInvoke(nameof(CheckReturn));
         
