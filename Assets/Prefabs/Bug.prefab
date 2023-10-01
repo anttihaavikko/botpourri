@@ -2609,7 +2609,7 @@ MonoBehaviour:
   whiteMaterial: {fileID: 2100000, guid: c4d77f13a885d46ac887b32d18134a38, type: 2}
   characters: []
   toHide: []
-  duration: 0.1
+  duration: 0.05
   extraCharacters: []
 --- !u!114 &4945052854037564983
 MonoBehaviour:
