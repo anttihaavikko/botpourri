@@ -1,5 +1,7 @@
+using AnttiStarterKit.Managers;
 using TMPro;
 using UnityEngine;
+using AnttiStarterKit.Extensions;
 
 public class Node : MonoBehaviour
 {
@@ -17,17 +19,21 @@ public class Node : MonoBehaviour
     {
         if (!booted)
         {
+            EffectManager.AddTextPopup($"+{space} <size=7>bytes</size>", transform.position + Vector3.up * 3);
             bug.AddSpace(space);
 
             var p = transform.position;
             var notOverlapping = Mathf.Abs(p.x) >= 20 || Mathf.Abs(p.y) >= 6;
 
-            if (notOverlapping && bug.HasNoBonuses && (bug.FreeSpace > left.Size || bug.FreeSpace > left.Size))
+            this.StartCoroutine(() =>
             {
-                installHelp.SetActive(true);
-                installHelp.transform.position = transform.position;
-                installHelp.SetActive(true);
-            }
+                if (notOverlapping && bug.HasNoBonuses && (bug.FreeSpace > left.Size || bug.FreeSpace > right.Size))
+                {
+                    installHelp.SetActive(true);
+                    installHelp.transform.position = transform.position;
+                    installHelp.SetActive(true);
+                }
+            }, 0.3f);
         }
         
         booted = true;

@@ -7,7 +7,8 @@ public class Folder : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer bg;
     [SerializeField] private List<SpriteRenderer> icons;
-    
+    [SerializeField] private Color hilite;
+
     private SpriteRenderer icon;
 
     private bool activated;
@@ -52,7 +53,7 @@ public class Folder : MonoBehaviour
         activated = bug.FreeSpace >= bonus.size;
         if (activated)
         {
-            bg.color = icon.color = Color.yellow;
+            bg.color = icon.color = hilite;
             bug.AddSpace(-bonus.size);
             bug.AddBonus(bonus);
         }

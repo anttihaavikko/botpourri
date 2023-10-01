@@ -5,6 +5,7 @@ using AnttiStarterKit.Animations;
 using AnttiStarterKit.Extensions;
 using AnttiStarterKit.Game;
 using AnttiStarterKit.Managers;
+using AnttiStarterKit.Utils;
 using AnttiStarterKit.Visuals;
 using Mono.Cecil;
 using TMPro;
@@ -31,6 +32,8 @@ public class Bug : MonoBehaviour
     [SerializeField] private ScoreDisplay score;
     [SerializeField] private LayerMask withoutHints, withHints;
     [SerializeField] private GameObject installHelp;
+    [SerializeField] private Color shotColor;
+    [SerializeField] private TMP_Text spaceDisplay;
 
     public int FreeSpace => freeSpace;
     public bool HasNoBonuses => bonuses.Count == 0;
@@ -97,7 +100,7 @@ public class Bug : MonoBehaviour
     private void Update()
     {
         if (!isPlayer) return;
-        
+
         UpdatePreviewLine();
 
         shotDelay = Mathf.MoveTowards(shotDelay, 0, Time.deltaTime);
@@ -105,7 +108,7 @@ public class Bug : MonoBehaviour
         var target = enemies.Find(transform.position, attackRange);
         if (target && shotDelay <= 0)
         {
-            lineDrawer.AddThunderLine(transform.position + Vector3.up, target.transform.position + Vector3.up * 0.3f, new Color(5, 5, 0), 0.6f, 0.5f);
+            lineDrawer.AddThunderLine(transform.position + Vector3.up, target.transform.position + Vector3.up * 0.3f, shotColor, 0.6f, 0.5f);
             target.Damage(damage);
             shotDelay = attackDelay;
             
@@ -114,7 +117,7 @@ public class Bug : MonoBehaviour
                 var chainTarget = enemies.Find(target.transform.position, attackRange, target);
                 if (chainTarget)
                 {
-                    lineDrawer.AddThunderLine(target.transform.position + Vector3.up * 0.3f, chainTarget.transform.position + Vector3.up * 0.3f, new Color(5, 5, 0), 0.6f, 0.5f);
+                    lineDrawer.AddThunderLine(target.transform.position + Vector3.up * 0.3f, chainTarget.transform.position + Vector3.up * 0.3f, shotColor, 0.6f, 0.5f);
                     target = chainTarget;
                     target.Damage(damage);
                 }
@@ -245,6 +248,7 @@ public class Bug : MonoBehaviour
     public void AddSpace(int amount)
     {
         freeSpace += amount;
+        spaceDisplay.text = $"{freeSpace} bytes";
         currentNode.UpdateScreen(this);
     }
 

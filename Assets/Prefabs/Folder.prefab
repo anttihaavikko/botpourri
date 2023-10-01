@@ -740,6 +740,7 @@ MonoBehaviour:
   - {fileID: 3814521271182875248}
   - {fileID: 8155154215452568609}
   - {fileID: 6593862131523665665}
+  hilite: {r: 1, g: 0.8156863, b: 0.27450982, a: 1}
 --- !u!1 &5650030071952773813
 GameObject:
   m_ObjectHideFlags: 0
