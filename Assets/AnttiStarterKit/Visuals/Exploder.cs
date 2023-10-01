@@ -10,6 +10,7 @@ namespace AnttiStarterKit.Visuals
     {
         [SerializeField] private List<int> effects;
         [SerializeField] private float shakeAmount = 0.5f;
+        [SerializeField] private Transform point;
 
         private EffectCamera cam;
 
@@ -22,7 +23,7 @@ namespace AnttiStarterKit.Visuals
         {
             if (effects.Any())
             {
-                EffectManager.AddEffects(effects, transform.position);    
+                EffectManager.AddEffects(effects, point.position);    
             }
             
             var distance = 1f / Mathf.Max(1f, (transform.position.WhereZ(0) - cam.transform.position.WhereZ(0)).magnitude);

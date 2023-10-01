@@ -11,6 +11,7 @@ namespace AnttiStarterKit.Visuals
         [SerializeField] private GameObject rootObject;
         [SerializeField] private List<int> effects;
         [SerializeField] private float shakeAmount = 0.5f;
+        [SerializeField] private Vector3 offset;
 
         private EffectCamera cam;
 
@@ -23,7 +24,7 @@ namespace AnttiStarterKit.Visuals
         {
             if (effects.Any())
             {
-                EffectManager.AddEffects(effects, transform.position);    
+                EffectManager.AddEffects(effects, transform.position + offset);    
             }
             
             cam.BaseEffect(shakeAmount);

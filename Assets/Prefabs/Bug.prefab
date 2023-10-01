@@ -2378,6 +2378,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   installHelp: {fileID: 0}
+  shotColor: {r: 0, g: 0, b: 0, a: 0}
+  spaceDisplay: {fileID: 0}
 --- !u!120 &48214443778286300
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -2603,8 +2605,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d9bf65dd26a4257af0c8b90c59f52f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effects: 000000000100000002000000
+  effects: 00000000010000000200000003000000
   shakeAmount: 0.6
+  point: {fileID: 48214442312508873}
 --- !u!1 &804535892137167009
 GameObject:
   m_ObjectHideFlags: 0
