@@ -20,4 +20,10 @@ public class StartView : MonoBehaviour
         bug.MoveTo(spots.Where(p => Vector3.Distance(p.position, bug.transform.position) > 1f).ToList().Random().position);
         Invoke(nameof(ChangeSpot), Random.Range(2f, 5f));
     }
+
+    public void NameOrPlay()
+    {
+        var scene = PlayerPrefs.HasKey("PlayerName") && PlayerPrefs.HasKey("PlayerId") ? "Main" : "Name";
+        SceneChanger.Instance.ChangeScene(scene);
+    }
 }

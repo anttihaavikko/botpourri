@@ -8,6 +8,7 @@ using AnttiStarterKit.Managers;
 using AnttiStarterKit.ScriptableObjects;
 using AnttiStarterKit.Utils;
 using AnttiStarterKit.Visuals;
+using Leaderboards;
 using Mono.Cecil;
 using TMPro;
 using UnityEngine;
@@ -46,6 +47,7 @@ public class Bug : MonoBehaviour
     [SerializeField] private SoundComposition shotSound, placeSound;
     [SerializeField] private GameObject gameOverMenu;
     [SerializeField] private GameObject openMouth;
+    [SerializeField] private ScoreManager scoreManager;
 
     public int FreeSpace => freeSpace;
     public bool HasNoBonuses => bonuses.Count == 0;
@@ -65,6 +67,7 @@ public class Bug : MonoBehaviour
     private int damage;
     private int shieldLeft, shieldMax;
     private int chaining;
+    private int kills;
 
     private int steps;
 
@@ -406,6 +409,10 @@ public class Bug : MonoBehaviour
         AudioManager.Instance.TargetPitch = 0f;
         Stutter(6);
         visionArea.gameObject.SetActive(false);
+        
+        var plr = PlayerPrefs.GetString("PlayerName", "Anon");
+        var id = PlayerPrefs.GetString("PlayerId", Guid.NewGuid().ToString());
+        scoreManager.SubmitScore(plr, score.Total, kills, id);
     }
 
     public void Leech()
@@ -431,10 +438,11 @@ public class Bug : MonoBehaviour
     public void AddScore(int level, Vector3 pos)
     {
         if (!score) return;
+        kills++;
         AudioManager.Instance.ChangePitch(1.2f);
         var lvlMulti = Mathf.Max(1, level + 1);
         var amount = lvlMulti * lvlMulti * 10 * Mathf.Max(1, freeSpace) * Mathf.Min(score.Multi, 64);
-        EffectManager.AddTextPopup(amount.ToString(), pos + Vector3.up);
+        EffectManager.AddTextPopup(amount.AsScore(), pos + Vector3.up);
         score.Add(amount, false);
         score.AddMulti();
     }
