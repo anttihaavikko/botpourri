@@ -150,10 +150,10 @@ MonoBehaviour:
   - {r: 1, g: 0.8156863, b: 0.27450982, a: 1}
   frontColors:
   - {r: 1, g: 1, b: 1, a: 1}
-  clickSound: -1
-  hoverSound: -1
+  clickSound: 1
+  hoverSound: 2
   clickVolume: 1
-  hoverVolume: 1
+  hoverVolume: 0.25
 --- !u!1 &8595454905851710935
 GameObject:
   m_ObjectHideFlags: 0

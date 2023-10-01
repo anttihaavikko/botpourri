@@ -62,7 +62,8 @@ public class Enemy : MonoBehaviour
 
         if (target && biteDelay <= 0)
         {
-            biteSound.Play(transform.position);
+            var p = transform.position;
+            biteSound.Play(p);
             bug.Nudge((tp - pos).normalized * 0.3f);
             target.Damage(1);
             biteDelay = 0.75f;

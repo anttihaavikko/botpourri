@@ -3620,7 +3620,10 @@ MonoBehaviour:
   volume: 0.5
   effects:
   - {fileID: 8300000, guid: 6a3827218518249a496b1d9736d75b84, type: 3}
-  soundCollections: []
+  - {fileID: 8300000, guid: 6b9faad917827446284f0c415cdad3f4, type: 3}
+  - {fileID: 8300000, guid: f37b5a3a73cd543b6bbd349e5295d37f, type: 3}
+  soundCollections:
+  - {fileID: 11400000, guid: 5a36c24b9a6b84669944678e02ddd960, type: 2}
 --- !u!4 &1796631155
 Transform:
   m_ObjectHideFlags: 0
