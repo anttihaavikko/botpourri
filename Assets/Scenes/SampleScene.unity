@@ -2116,6 +2116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1356877980}
   - component: {fileID: 1356877979}
+  - component: {fileID: 1356877981}
   m_Layer: 0
   m_Name: World
   m_TagString: Untagged
@@ -2152,6 +2153,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1356877981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356877978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 564eebe353ca4b03ae4d604342f25dcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fast: 10
+  slow: 0.1
+  isToggle: 0
+  fastKey: 9
+  slowKey: 304
 --- !u!1 &1380138549
 GameObject:
   m_ObjectHideFlags: 0
@@ -2311,7 +2329,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0 bytes
+  m_text: 0 <size=18>bytes</size>
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7f1f13a28266c4d088dd2c643baf58d7, type: 2}
   m_sharedMaterial: {fileID: 1810333601374844828, guid: 7f1f13a28266c4d088dd2c643baf58d7, type: 2}

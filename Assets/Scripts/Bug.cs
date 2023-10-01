@@ -248,7 +248,7 @@ public class Bug : MonoBehaviour
     public void AddSpace(int amount)
     {
         freeSpace += amount;
-        spaceDisplay.text = $"{freeSpace} bytes";
+        spaceDisplay.text = $"{freeSpace} <size=18>bytes</size>";
         currentNode.UpdateScreen(this);
     }
 
