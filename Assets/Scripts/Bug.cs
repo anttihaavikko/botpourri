@@ -23,7 +23,7 @@ public class Bug : MonoBehaviour
     [SerializeField] private Tooltip tooltip;
     [SerializeField] private TMP_Text stepDisplay;
     [SerializeField] private CircleCollider2D visionArea;
-    [SerializeField] private GameObject circlePrefab;
+    [SerializeField] private SpriteRenderer circlePrefab;
     [SerializeField] private bool isPlayer;
     [SerializeField] private LineDrawer lineDrawer;
     [SerializeField] private Health health;
@@ -36,6 +36,8 @@ public class Bug : MonoBehaviour
     [SerializeField] private TMP_Text spaceDisplay;
     [SerializeField] private GameObject previewSpot;
     [SerializeField] private Transform nudgeRoot;
+    [SerializeField] private Color pathColor;
+    [SerializeField] private Face face;
 
     public int FreeSpace => freeSpace;
     public bool HasNoBonuses => bonuses.Count == 0;
@@ -65,8 +67,8 @@ public class Bug : MonoBehaviour
         effectCam = Camera.main.GetComponent<EffectCamera>();
         
         if (!isPlayer) return;
-
-        Instantiate(circlePrefab, Vector3.zero, Quaternion.identity);
+        
+        AddCircle(Vector3.zero);
         StartPath(currentNode.transform.position);
         currentNode.ToggleHitBox(false);
         currentNode.Activate(this, installHelp);
@@ -91,10 +93,15 @@ public class Bug : MonoBehaviour
         }
     }
 
+    public void Look(Transform at)
+    {
+        face.LookTarget = at;
+    }
+
     private void StartPath(Vector3 pos)
     {
         var path = Instantiate(pathPrefab, currentNode.transform.position, Quaternion.identity);
-        path.SetStart(pos);
+        path.SetStart(pos, pathColor);
         paths.Add(path);
         UpdateSteps();
     }
@@ -122,6 +129,8 @@ public class Bug : MonoBehaviour
             lineDrawer.AddThunderLine(pos + Vector3.up, tp + Vector3.up * 0.3f, shotColor, 0.6f, 0.5f);
             target.Damage(damage);
             shotDelay = attackDelay;
+            
+            Look(target.transform);
             
             Nudge((pos - tp).normalized * 0.3f);
             
@@ -177,8 +186,14 @@ public class Bug : MonoBehaviour
 
     private void AddNode(Vector3 pos)
     {
-        Instantiate(circlePrefab, pos, Quaternion.identity);
+        AddCircle(pos);
         paths.Last().AddPoint(pos);
+    }
+
+    private void AddCircle(Vector3 pos)
+    {
+        var circle = Instantiate(circlePrefab, pos, Quaternion.identity);
+        circle.color = pathColor;
     }
 
     private float MoveTo(Vector3 pos, bool manual = false)

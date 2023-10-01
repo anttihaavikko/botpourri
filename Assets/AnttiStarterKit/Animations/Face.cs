@@ -51,7 +51,7 @@ namespace AnttiStarterKit.Animations
 		public bool followMouse = false;
 		public Camera cam;
 		
-		public Vector3 LookTarget { get; set; }
+		public Transform LookTarget { get; set; }
 
 		// Use this for initialization
 		void Awake () {
@@ -163,7 +163,7 @@ namespace AnttiStarterKit.Animations
 			Vector3 mp = Input.mousePosition;
 			mp.z = 10f;
 			Vector3 mouseInWorld = cam.ScreenToWorldPoint(mp);
-			Vector2 lookPos = (followMouse ? mouseInWorld : LookTarget) - transform.parent.position;
+			Vector2 lookPos = (!LookTarget ? mouseInWorld : LookTarget.position) - transform.parent.position;
 
 			lookPos = Quaternion.Euler(new Vector3(0, 0, -transform.parent.rotation.eulerAngles.z)) * lookPos;
 

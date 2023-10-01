@@ -8,8 +8,9 @@ public class PathLine : MonoBehaviour
 
     public int Count => line.positionCount;
 
-    public void SetStart(Vector3 pos)
+    public void SetStart(Vector3 pos, Color color)
     {
+        line.startColor = line.endColor = color;
         line.SetPosition(0, pos);
     }
 

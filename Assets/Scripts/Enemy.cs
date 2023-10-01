@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour
 
     public void SetTarget(Bug player)
     {
+        bug.Look(player.transform);
         speed = anim.speed = Random.Range(0.9f, 1.1f);
         wanderDirection = Quaternion.Euler(0, 0, Random.value * 360f) * Vector3.up;
         target = player;
