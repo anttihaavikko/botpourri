@@ -62,7 +62,7 @@ public class Enemy : MonoBehaviour
 
         if (target && biteDelay <= 0)
         {
-            target.Stutter(4);
+            target.Stutter(3);
             bug.OpenMouth();
             var p = transform.position;
             biteSound.Play(p);
