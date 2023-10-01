@@ -1,5 +1,3 @@
-using System;
-using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class PathLine : MonoBehaviour
