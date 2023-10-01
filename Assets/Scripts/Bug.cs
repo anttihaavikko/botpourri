@@ -38,6 +38,7 @@ public class Bug : MonoBehaviour
     [SerializeField] private Transform nudgeRoot;
     [SerializeField] private Color pathColor;
     [SerializeField] private Face face;
+    [SerializeField] private Transform center;
 
     public int FreeSpace => freeSpace;
     public bool HasNoBonuses => bonuses.Count == 0;
@@ -126,7 +127,7 @@ public class Bug : MonoBehaviour
         {
             var tp = target.transform.position;
             var pos = transform.position;
-            lineDrawer.AddThunderLine(pos + Vector3.up, tp + Vector3.up * 0.3f, shotColor, 0.6f, 0.5f);
+            lineDrawer.AddThunderLine(center, target.Center, shotColor, 0.6f, 0.5f);
             target.Damage(damage);
             shotDelay = attackDelay;
             
@@ -139,7 +140,7 @@ public class Bug : MonoBehaviour
                 var chainTarget = enemies.Find(target.transform.position, attackRange, target);
                 if (chainTarget)
                 {
-                    lineDrawer.AddThunderLine(target.transform.position + Vector3.up * 0.3f, chainTarget.transform.position + Vector3.up * 0.3f, shotColor, 0.6f, 0.5f);
+                    lineDrawer.AddThunderLine(target.Center, chainTarget.Center, shotColor, 0.6f, 0.5f);
                     target = chainTarget;
                     target.Damage(damage);
                 }

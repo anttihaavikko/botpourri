@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Animator anim;
     [SerializeField] private Bug bug;
     [SerializeField] private Rigidbody2D body;
+    [SerializeField] private Transform center;
 
     private Bug target;
     private Enemies container;
@@ -17,6 +18,8 @@ public class Enemy : MonoBehaviour
     private Vector3 wanderDirection;
     private float speed;
     private int level;
+
+    public Transform Center => center;
 
     public void SetTarget(Bug player)
     {

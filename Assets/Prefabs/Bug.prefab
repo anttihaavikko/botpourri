@@ -2384,6 +2384,7 @@ MonoBehaviour:
   nudgeRoot: {fileID: 4420608803899333383}
   pathColor: {r: 0, g: 0, b: 0, a: 0}
   face: {fileID: 1226499655224314511}
+  center: {fileID: 48214442312508873}
 --- !u!120 &48214443778286300
 LineRenderer:
   m_ObjectHideFlags: 0
