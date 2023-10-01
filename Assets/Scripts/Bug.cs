@@ -41,7 +41,7 @@ public class Bug : MonoBehaviour
     [SerializeField] private Transform center;
     [SerializeField] private ParticleSystem healEffect;
     [SerializeField] private Transform nub;
-    
+    [SerializeField] private Transform shotPoint;
 
     public int FreeSpace => freeSpace;
     public bool HasNoBonuses => bonuses.Count == 0;
@@ -141,7 +141,11 @@ public class Bug : MonoBehaviour
         {
             var tp = target.transform.position;
             var pos = transform.position;
-            lineDrawer.AddThunderLine(center, target.Center, shotColor, 0.6f, 0.5f);
+
+            shotPoint.position = Vector3.MoveTowards(center.position, tp, 0.7f);
+            EffectManager.AddEffect(6, shotPoint.position);
+            
+            lineDrawer.AddThunderLine(shotPoint, target.Center, shotColor, 0.6f, 0.5f);
             target.Damage(damage);
             shotDelay = attackDelay;
             
