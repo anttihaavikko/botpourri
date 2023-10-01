@@ -21,7 +21,7 @@ public class Node : MonoBehaviour
 
     public void Activate(Bug bug, GameObject installHelp)
     {
-        if (Vector3.Distance(transform.position, Vector3.zero) < 3.5f) return; 
+        if (!skipSound && Vector3.Distance(transform.position, Vector3.zero) < 3.5f) return;
         
         if (!booted)
         {
@@ -79,6 +79,8 @@ public class Node : MonoBehaviour
 
     public void Show()
     {
+        if (Vector3.Distance(transform.position, Vector3.zero) < 3.5f) return;
+        
         if (!ring.enabled)
         {
             revealSound.Play(transform.position, 0.5f);
