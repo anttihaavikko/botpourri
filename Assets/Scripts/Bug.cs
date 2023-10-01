@@ -44,6 +44,7 @@ public class Bug : MonoBehaviour
     [SerializeField] private Transform nub;
     [SerializeField] private Transform shotPoint;
     [SerializeField] private SoundComposition shotSound, placeSound;
+    [SerializeField] private GameObject gameOverMenu;
 
     public int FreeSpace => freeSpace;
     public bool HasNoBonuses => bonuses.Count == 0;
@@ -392,6 +393,7 @@ public class Bug : MonoBehaviour
 
     public void GameOver()
     {
+        gameOverMenu.SetActive(true);
         AudioManager.Instance.TargetPitch = 0f;
         Stutter(6);
         visionArea.gameObject.SetActive(false);
